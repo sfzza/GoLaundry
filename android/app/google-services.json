@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "293997197792",
+    "firebase_url": "https://golaundry-application-default-rtdb.firebaseio.com",
+    "project_id": "golaundry-application",
+    "storage_bucket": "golaundry-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293997197792:android:54ee696c439215968d9385",
+        "android_client_info": {
+          "package_name": "com.safira.golaundry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293997197792-b42ih9l8l014dfvtpdv8g0e0q8n1q5uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1mLeCTXF5j-Qs5b3oBevODbSa5xV9ViU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293997197792-b42ih9l8l014dfvtpdv8g0e0q8n1q5uv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "293997197792-glfdi8kfjrn5fdjpsvkm500kucjajpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.safiraios.golaundry"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
