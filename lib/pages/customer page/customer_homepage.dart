@@ -98,7 +98,7 @@ class _customerHomePageState extends State<customerHomePage> {
                   return circularProgress();
                 }
                 return SizedBox(
-                  height: 190,
+                  height: 250,
                   // width: 300,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
