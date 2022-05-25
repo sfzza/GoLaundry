@@ -85,7 +85,7 @@ class _customerHomePageState extends State<customerHomePage> {
         Padding(
           padding: EdgeInsets.only(top: 45, bottom: 30, left: 30),
           child: Text(
-            'Popular Laundry',
+            'Quick Pick',
             style: homeTextStyle,
           ),
         ),
