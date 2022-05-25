@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/laundry_list_page.dart';
 import 'package:golaundry/theme.dart';
 
 class viewLaundryServicePage extends StatefulWidget {
@@ -10,15 +11,33 @@ class viewLaundryServicePage extends StatefulWidget {
 
 class _viewLaundryServicePageState extends State<viewLaundryServicePage> {
   List<Tab> serviceTab = [
-    Tab(text: "wash"),
+    Tab(
+      text: "wash",
+      icon: Image.asset(
+        "assets/wash.png",
+        width: 30,
+      ),
+    ),
     Tab(
       text: "iron",
+      icon: Image.asset(
+        "assets/iron.png",
+        width: 30,
+      ),
     ),
     Tab(
       text: "wash&iron",
+      icon: Image.asset(
+        "assets/wash&iron.png",
+        width: 30,
+      ),
     ),
     Tab(
       text: "dry",
+      icon: Image.asset(
+        "assets/dry.png",
+        width: 30,
+      ),
     ),
   ];
   @override
@@ -50,14 +69,14 @@ class _viewLaundryServicePageState extends State<viewLaundryServicePage> {
                 tabs: serviceTab,
               ),
             ),
-            preferredSize: Size.fromHeight(100),
+            preferredSize: Size.fromHeight(130),
           ),
           body: TabBarView(
             children: [
-              Text('data'),
-              Text(''),
-              Text('data'),
-              Text(''),
+              LaundryListPage(),
+              LaundryListPage(),
+              LaundryListPage(),
+              LaundryListPage(),
             ],
           ),
         ),

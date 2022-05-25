@@ -104,3 +104,11 @@ TextStyle textWhiteFieldTextStyle = GoogleFonts.roboto(
 // textField Text Style dark
 TextStyle textDarkFieldTextStyle = GoogleFonts.roboto(
     color: Color(0xff1A374D), fontSize: 15, fontWeight: FontWeight.w400);
+
+// laundry list Text Style dark
+TextStyle laundryListFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 24, fontWeight: FontWeight.w800);
+
+// laundry list sub Text Style dark
+TextStyle laundryListSubFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 12, fontWeight: FontWeight.w400);
