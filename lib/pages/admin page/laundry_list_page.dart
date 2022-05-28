@@ -2,9 +2,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/admin%20page/laundry_page.dart';
 import 'package:golaundry/pages/widgets/laundry_list.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
-import 'package:golaundry/theme.dart';
 
 class LaundryListPage extends StatefulWidget {
   const LaundryListPage({Key? key}) : super(key: key);
@@ -29,7 +29,18 @@ class _LaundryListPageState extends State<LaundryListPage> {
                 Map<String, dynamic> data =
                     docs.data()! as Map<String, dynamic>;
 
-                return LaundryList(title: data["laundry_name"]);
+                return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LaundryPage(
+                                id_laundry: data['id_laundry'].toString())),
+                      );
+                    },
+                    child: LaundryList(
+                      title: data['laundry_name'],
+                    ));
               }).toList(),
             );
           }),

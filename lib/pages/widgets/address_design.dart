@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:golaundry/maps/maps.dart';
 import 'package:golaundry/pages/assistant_method/address_changer.dart';
 import 'package:golaundry/pages/models/address.dart';
 import 'package:provider/provider.dart';
@@ -97,7 +98,25 @@ class _AddressDesignState extends State<AddressDesign> {
                   ],
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              child: Container(
+                width: 400,
+                height: 40,
+                alignment: Alignment.center,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // MapUtils.openMapWithPosition(
+                    //   widget.model!.lat!, widget.model!.lng!);
+
+                    MapUtils.openMapWithAddress(widget.model!.fullAddress!);
+                  },
+                  child: Text('check on map'),
+                  style: ElevatedButton.styleFrom(primary: Color(0xff2C88D9)),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -112,3 +112,19 @@ TextStyle laundryListFieldTextStyle = GoogleFonts.roboto(
 // laundry list sub Text Style dark
 TextStyle laundryListSubFieldTextStyle = GoogleFonts.roboto(
     color: Color(0xff406882), fontSize: 12, fontWeight: FontWeight.w400);
+
+// laundry page title Text Style dark
+TextStyle laundryPageTitleFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 36, fontWeight: FontWeight.w900);
+
+// laundry page body Text Style dark
+TextStyle laundryPageBodyFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 13, fontWeight: FontWeight.w500);
+
+// laundry page Sub Heading Text Style dark
+TextStyle laundryPageSubHeadingFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w700);
+
+// laundry page heading Text Style dark
+TextStyle laundryPageHeadingFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 24, fontWeight: FontWeight.w900);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:golaundry/pages/laundry_list_page.dart';
+import 'package:golaundry/pages/admin%20page/laundry_list_page.dart';
 import 'package:golaundry/theme.dart';
 
 class viewLaundryServicePage extends StatefulWidget {

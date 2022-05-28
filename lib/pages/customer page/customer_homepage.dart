@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/admin%20page/laundry_page.dart';
 import 'package:golaundry/pages/widgets/popular_laundry.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
@@ -107,9 +108,20 @@ class _customerHomePageState extends State<customerHomePage> {
                       Map<String, dynamic> data =
                           docs.data()! as Map<String, dynamic>;
 
-                      return popularlaundry(
-                          laundry_name: data["laundry_name"],
-                          laundry_address: data["laundry_address"]);
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LaundryPage(
+                                      id_laundry: data['id_laundry'],
+                                    )),
+                          );
+                        },
+                        child: popularlaundry(
+                            laundry_name: data["laundry_name"],
+                            laundry_address: data["laundry_address"]),
+                      );
                     }).toList(),
                   ),
                 );
