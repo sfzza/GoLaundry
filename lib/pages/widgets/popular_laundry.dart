@@ -7,15 +7,12 @@ import 'package:golaundry/theme.dart';
 class popularlaundry extends StatefulWidget {
   final String laundry_name;
   final String laundry_address;
+  final String laundry_hour;
 
-  // Laundries? model;
-  // BuildContext? context;
-  // final String imageUrl;
-  // final String title;
-  // final String location;
-  // final String duration;
-
-  popularlaundry({required this.laundry_name, required this.laundry_address});
+  popularlaundry(
+      {required this.laundry_name,
+      required this.laundry_address,
+      required this.laundry_hour});
 
   @override
   State<popularlaundry> createState() => _popularlaundryState();
@@ -90,7 +87,7 @@ class _popularlaundryState extends State<popularlaundry> {
                     SizedBox(
                       width: 3,
                     ),
-                    Text("null", style: subtitleLaundryTextStyle),
+                    Text(widget.laundry_hour, style: subtitleLaundryTextStyle),
                   ],
                 ),
               )

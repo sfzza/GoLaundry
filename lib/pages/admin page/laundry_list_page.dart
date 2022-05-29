@@ -30,17 +30,19 @@ class _LaundryListPageState extends State<LaundryListPage> {
                     docs.data()! as Map<String, dynamic>;
 
                 return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LaundryPage(
-                                id_laundry: data['id_laundry'].toString())),
-                      );
-                    },
-                    child: LaundryList(
-                      title: data['laundry_name'],
-                    ));
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LaundryPage(
+                              id_laundry: data['id_laundry'].toString())),
+                    );
+                  },
+                  child: LaundryList(
+                    laundry_name: data["laundry_name"],
+                    laundry_hour: data["laundry_hour"],
+                  ),
+                );
               }).toList(),
             );
           }),

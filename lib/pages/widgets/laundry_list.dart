@@ -3,13 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:golaundry/theme.dart';
 
-class LaundryList extends StatelessWidget {
-  final String title;
-  // final String sub;
-  LaundryList({
-    required this.title,
-  });
+class LaundryList extends StatefulWidget {
+  final String laundry_name;
+  final String laundry_hour;
+  LaundryList({required this.laundry_name, required this.laundry_hour});
 
+  @override
+  State<LaundryList> createState() => _LaundryListState();
+}
+
+class _LaundryListState extends State<LaundryList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,15 +40,23 @@ class LaundryList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    widget.laundry_name,
                     style: laundryListFieldTextStyle,
                   ),
                   SizedBox(
                     height: 8,
                   ),
-                  Text(
-                    "Operation hours: ",
-                    style: laundryListSubFieldTextStyle,
+                  Row(
+                    children: [
+                      Text(
+                        "Operation hours:",
+                        style: laundryListSubFieldTextStyle,
+                      ),
+                      Text(
+                        widget.laundry_hour,
+                        style: laundryListSubFieldTextStyle,
+                      )
+                    ],
                   )
                 ],
               ),

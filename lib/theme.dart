@@ -128,3 +128,11 @@ TextStyle laundryPageSubHeadingFieldTextStyle = GoogleFonts.roboto(
 // laundry page heading Text Style dark
 TextStyle laundryPageHeadingFieldTextStyle = GoogleFonts.roboto(
     color: Color(0xff406882), fontSize: 24, fontWeight: FontWeight.w900);
+
+// detail title Text Style dark
+TextStyle detailTitleFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 18, fontWeight: FontWeight.w700);
+
+// detail subtitle Text Style dark
+TextStyle detailSubtitleFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w400);

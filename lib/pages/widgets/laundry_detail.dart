@@ -4,7 +4,15 @@ import 'package:golaundry/theme.dart';
 class LaundryDetail extends StatelessWidget {
   final String laundry_name;
   final String laundry_address;
-  LaundryDetail({required this.laundry_name, required this.laundry_address});
+  final String laundry_hour;
+  final String laundry_fare;
+  final String laundry_phone;
+  LaundryDetail(
+      {required this.laundry_name,
+      required this.laundry_address,
+      required this.laundry_fare,
+      required this.laundry_hour,
+      required this.laundry_phone});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,21 +34,21 @@ class LaundryDetail extends StatelessWidget {
             height: 17,
           ),
           Text(
-            "Operation Hour: ",
+            "Operation Hour: $laundry_hour",
             style: laundryPageSubHeadingFieldTextStyle,
           ),
           SizedBox(
             height: 10,
           ),
           Text(
-            "Phone Number: ",
+            "Phone Number: $laundry_phone",
             style: laundryPageSubHeadingFieldTextStyle,
           ),
           SizedBox(
             height: 10,
           ),
           Text(
-            "Fare per 1 KM: ",
+            "Fare per 1 KM: $laundry_fare rupiah",
             style: laundryPageSubHeadingFieldTextStyle,
           ),
           SizedBox(height: 30),
@@ -52,9 +60,12 @@ class LaundryDetail extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "Laundry 1 is a laundry service where you can send your laundry for laundry. This laundry service is good for your laundry if you dont know where to laundry your laundry.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             textAlign: TextAlign.justify,
             style: laundryPageBodyFieldTextStyle,
+          ),
+          SizedBox(
+            height: 70,
           ),
         ],
       ),

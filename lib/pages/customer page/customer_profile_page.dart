@@ -7,11 +7,12 @@ import 'package:golaundry/pages/customer%20page/customer_payment_page.dart';
 import 'package:golaundry/pages/customer%20page/customer_editprofile_page.dart';
 
 import 'package:golaundry/pages/global/global.dart';
+import 'package:golaundry/pages/models/customer.dart';
 import 'package:golaundry/pages/userlevel_page.dart';
 import 'package:golaundry/theme.dart';
 
 class customerProfilePage extends StatelessWidget {
-  const customerProfilePage({Key? key}) : super(key: key);
+  // const customerProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

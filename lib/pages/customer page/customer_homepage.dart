@@ -119,8 +119,10 @@ class _customerHomePageState extends State<customerHomePage> {
                           );
                         },
                         child: popularlaundry(
-                            laundry_name: data["laundry_name"],
-                            laundry_address: data["laundry_address"]),
+                          laundry_name: data["laundry_name"],
+                          laundry_address: data["laundry_address"],
+                          laundry_hour: data["laundry_hour"],
+                        ),
                       );
                     }).toList(),
                   ),
