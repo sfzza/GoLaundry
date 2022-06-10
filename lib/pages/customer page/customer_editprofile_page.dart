@@ -7,6 +7,8 @@ import 'package:golaundry/pages/models/customer.dart';
 import 'package:golaundry/theme.dart';
 
 import '../global/global.dart';
+import '../widgets/error_dialog.dart';
+import '../widgets/loading_dialog.dart';
 
 class customerEditProfilePage extends StatefulWidget {
   // const customerEditProfilePage({Key? key}) : super(key: key);
@@ -14,35 +16,25 @@ class customerEditProfilePage extends StatefulWidget {
   @override
   State<customerEditProfilePage> createState() =>
       _customerEditProfilePageState();
-  // Customers customer;
-  // final String? data;
-  // customerEditProfilePage({required this.customer});
+  final Customers customer = Customers();
+  // final TextEditingController emailTextEditingController;
+  // customerEditProfilePage({this.customer});
 }
 
 class _customerEditProfilePageState extends State<customerEditProfilePage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
 
-  // Future getDataToFirestore(User? currentUser) async {
-  //   FirebaseFirestore.instance
-  //       .collection("customers")
-  //       .doc(currentUser!.uid)
-  //       .get({
-
-  //   });
-  // }
-
   @override
   void initState() {
-    // emailTextEditingController.text = sharedPreferences!.getString("email")!;
-    // nameTextEditingController.text = sharedPreferences!.getString("name")!;
-    // phoneTextEditingController.text = sharedPreferences!.getString("phone")!;
-    // passwordTextEditingController.text =
-    //     sharedPreferences!.getString("password")!;
-    // super.initState();
+    emailTextEditingController.text = widget.customer.cust_email!;
+    passwordTextEditingController.text = widget.customer.cust_password!;
+    nameTextEditingController.text = widget.customer.cust_name!;
+    phoneTextEditingController.text = widget.customer.cust_phone!;
+    // TODO: implement initState
+    super.initState();
   }
 
   @override

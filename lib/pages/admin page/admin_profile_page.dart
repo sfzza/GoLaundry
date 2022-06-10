@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/admin%20page/pricing_page.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 
@@ -195,7 +196,13 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                           borderRadius: BorderRadius.circular(3),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PricingPage()),
+                        );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -245,6 +252,28 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                             color: Color(0xff6998AB),
                           )
                         ],
+                      ),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 49, bottom: 30),
+                    child: Container(
+                      width: 267,
+                      height: 50,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Color(0xff406882),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'Save',
+                          style: buttonTextStyle,
+                        ),
                       ),
                     ),
                   ),

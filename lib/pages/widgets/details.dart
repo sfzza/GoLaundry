@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:number_inc_dec/number_inc_dec.dart';
 
 import '../../theme.dart';
 
@@ -10,9 +11,14 @@ class Details extends StatefulWidget {
 
   @override
   State<Details> createState() => _DetailsState();
+  final String item;
+  final String price;
+
+  Details({required this.item, required this.price});
 }
 
 class _DetailsState extends State<Details> {
+  TextEditingController counterTextEditingController = TextEditingController();
   int _counter = 0;
 
   void _incrementCounter() {
@@ -25,66 +31,46 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: SafeArea(
-        child: Container(
-          height: 80,
-          decoration: BoxDecoration(
-            color: Color(0xffB1D0E0),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 20, bottom: 20, left: 10, right: 10),
-                child: CircleAvatar(
-                  backgroundColor: Color(0xff406882),
-                  radius: 30,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 17),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "T-Shirt",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: detailTitleFieldTextStyle,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        "Rp 15,000",
-                        style: detailSubtitleFieldTextStyle,
-                      )
-                    ]),
-              ),
-              SizedBox(width: 90),
-              Row(
+      child: Container(
+        height: 120,
+        decoration: BoxDecoration(
+          color: Color(0xffB1D0E0),
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.add_circle_rounded,
-                      color: Color(0xff406882),
-                    ),
+                  Text(
+                    widget.item,
+                    style: detailTitleFieldTextStyle,
                   ),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text("")),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.do_not_disturb_on_rounded,
-                      color: Color(0xff406882),
-                    ),
+                  Text(" : ", style: detailTitleFieldTextStyle),
+                  Text("RP ", style: detailSubtitleFieldTextStyle),
+                  Text(
+                    widget.price,
+                    style: detailSubtitleFieldTextStyle,
                   ),
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: NumberInputPrefabbed.roundedButtons(
+                decIconColor: Color(0xffB1D0E0),
+                incIconColor: Color(0xffB1D0E0),
+                style: detailTitleFieldTextStyle,
+                controller: counterTextEditingController,
+                incDecBgColor: Color(0xff406882),
+                min: 0,
+                max: 20,
+                initialValue: 0,
+                buttonArrangement: ButtonArrangement.incRightDecLeft,
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -10,11 +10,14 @@ import 'package:golaundry/pages/widgets/laundry_detail.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 
+import '../models/pricing.dart';
+
 class LaundryPage extends StatefulWidget {
   @override
   State<LaundryPage> createState() => _LaundryPageState();
   final String id_laundry;
-  LaundryPage({required this.id_laundry});
+  final Pricing? priceMap;
+  LaundryPage({required this.id_laundry, this.priceMap});
 }
 
 class _LaundryPageState extends State<LaundryPage> {

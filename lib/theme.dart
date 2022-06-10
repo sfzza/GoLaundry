@@ -135,4 +135,12 @@ TextStyle detailTitleFieldTextStyle = GoogleFonts.roboto(
 
 // detail subtitle Text Style dark
 TextStyle detailSubtitleFieldTextStyle = GoogleFonts.roboto(
-    color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w400);
+    color: Color(0xff406882), fontSize: 18, fontWeight: FontWeight.w400);
+
+// detail subtitle Text Style dark
+TextStyle totalFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xffc4c4c4), fontSize: 30, fontWeight: FontWeight.w700);
+
+// detail subtitle Text Style dark
+TextStyle totalSubFieldTextStyle = GoogleFonts.roboto(
+    color: Color(0xffc4c4c4), fontSize: 24, fontWeight: FontWeight.w700);
