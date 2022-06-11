@@ -59,6 +59,12 @@ class _DetailsState extends State<Details> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: NumberInputPrefabbed.roundedButtons(
+                onIncrement: (num incValue) {
+                  // print("inc value is $incValue");
+                },
+                onDecrement: (num decValue) {
+                  // print("dec value is $decValue");
+                },
                 decIconColor: Color(0xffB1D0E0),
                 incIconColor: Color(0xffB1D0E0),
                 style: detailTitleFieldTextStyle,
