@@ -74,6 +74,9 @@ class _adminLoginState extends State<adminLogin> {
             .setString("email", snapshot.data()!["laundry_email"]);
         await sharedPreferences!
             .setString("name", snapshot.data()!["laundry_name"]);
+        // List<String> laundrytags =
+        //     snapshot.data()!["laundry_tags"].cast<String>();
+        // await sharedPreferences!.setStringList("laundry_tags", laundrytags);
         // Navigator.pop(context);
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const AdminPage()));

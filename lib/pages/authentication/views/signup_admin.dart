@@ -16,6 +16,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../admin page/pricing_page.dart';
+
 class adminSignup extends StatefulWidget {
   const adminSignup({Key? key}) : super(key: key);
 
@@ -29,8 +31,11 @@ class _adminSignupState extends State<adminSignup> {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  // TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController locationTextEditingController = TextEditingController();
+  TextEditingController operationHourTextEditingController =
+      TextEditingController();
+  TextEditingController fareTextEditingController = TextEditingController();
 
   // XFile? imageXFile;
   // final ImagePicker _picker = ImagePicker();
@@ -157,6 +162,18 @@ class _adminSignupState extends State<adminSignup> {
             return ErrorDialog(
                 message: 'Password must be atleast 6 characters!');
           });
+    } else if (fareTextEditingController.text.isEmpty) {
+      showDialog(
+          context: context,
+          builder: (c) {
+            return ErrorDialog(message: 'Please enter fare per 1 KM!');
+          });
+    } else if (operationHourTextEditingController.text.isEmpty) {
+      showDialog(
+          context: context,
+          builder: (c) {
+            return ErrorDialog(message: 'Please enter operation hour!');
+          });
     } else if (locationTextEditingController.text.isEmpty) {
       showDialog(
           context: context,
@@ -204,10 +221,14 @@ class _adminSignupState extends State<adminSignup> {
       "laundry_name": nameTextEditingController.text.trim(),
       // "laundryImageUrl": laundryImageUrl,
       "laundry_phone": phoneTextEditingController.text.trim(),
+      "laundry_password": passwordTextEditingController.text.trim(),
       "laundry_address": completeAddress,
+      "laundry_fare": fareTextEditingController.text.trim(),
+      "laundry_hour": operationHourTextEditingController.text.trim(),
       "status": "approved",
       "lat": position!.latitude,
       "lng": position!.longitude,
+      // "laundry_tags": ['garbageValue'],
     });
     sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences!.setString("uid", currentUser.uid);
@@ -216,6 +237,7 @@ class _adminSignupState extends State<adminSignup> {
         .setString("name", nameTextEditingController.text.trim());
     await sharedPreferences!
         .setString("address", locationTextEditingController.text.trim());
+    // await sharedPreferences!.setStringList("laundry_tags", ['garbageValue']);
   }
 
   @override
@@ -373,9 +395,62 @@ class _adminSignupState extends State<adminSignup> {
           //       ),
           //       style: textFieldTextStyle),
           // ),
+
           SizedBox(
             height: 20,
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 54, right: 54),
+            child: TextFormField(
+                autocorrect: false,
+                controller: fareTextEditingController,
+                cursorColor: Color(0xff1A374D),
+                decoration: InputDecoration(
+                  hintText: "Fare per 1 KM",
+                  hintStyle: hintTextStyle,
+                  fillColor: Color(0xffB1D0E0),
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff406882), width: 3)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff1A374D), width: 3)),
+                ),
+                style: textFieldTextStyle),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 54, right: 54),
+            child: TextFormField(
+                autocorrect: false,
+                controller: operationHourTextEditingController,
+                cursorColor: Color(0xff1A374D),
+                decoration: InputDecoration(
+                  hintText: "Operation hour e.g. 08:00 - 20:00",
+                  hintStyle: hintTextStyle,
+                  fillColor: Color(0xffB1D0E0),
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff406882), width: 3)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff1A374D), width: 3)),
+                ),
+                style: textFieldTextStyle),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+
           Padding(
             padding: const EdgeInsets.only(left: 54, right: 54),
             child: TextFormField(

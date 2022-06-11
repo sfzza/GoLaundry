@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, prefer_collection_literals, unnecessary_new, unnecessary_this
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Laundries {
   String? id_laundry;
   String? laundry_email;
@@ -11,6 +13,15 @@ class Laundries {
       this.laundry_name,
       this.laundry_email,
       this.laundry_address});
+
+  // factory Laundries.fromJson(DocumentSnapshot snapshot) {
+  //   return Laundries(
+  //       id_laundry: snapshot.id,
+  //       laundry_name: snapshot["laundry_name"],
+  //       laundry_email: snapshot["laundry_email"],
+  //       laundry_address: snapshot["laundry_address"]);
+  // }
+// }
 
   Laundries.fromJson(Map<String, dynamic> json) {
     id_laundry = json["id_laundry"];

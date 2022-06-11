@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -167,35 +169,31 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                       ),
                     ),
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        final model = Address(
-                          state: _state.text.trim(),
-                          fullAddress: _completeAddress.text.trim(),
-                          flatNumber: _flatNumber.text.trim(),
-                          city: _city.text.trim(),
-                          lat: position!.latitude,
-                          lng: position!.longitude,
-                        ).toJson();
+                      final model = Address(
+                        state: _state.text.trim(),
+                        fullAddress: _completeAddress.text.trim(),
+                        flatNumber: _flatNumber.text.trim(),
+                        city: _city.text.trim(),
+                        lat: position!.latitude,
+                        lng: position!.longitude,
+                      ).toJson();
 
-                        FirebaseFirestore.instance
-                            .collection("customers")
-                            .doc(sharedPreferences!.getString("uid"))
-                            .collection("cust_address")
-                            .doc(DateTime.now()
-                                .millisecondsSinceEpoch
-                                .toString())
-                            .set(model)
-                            .then((value) {
-                          showDialog(
-                              context: context,
-                              builder: (c) {
-                                return ErrorDialog(
-                                  message: "new address has been saved.",
-                                );
-                              });
-                          formKey.currentState!.reset();
-                        });
-                      }
+                      FirebaseFirestore.instance
+                          .collection("customers")
+                          .doc(sharedPreferences!.getString("uid"))
+                          .collection("cust_address")
+                          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+                          .set(model)
+                          .then((value) {
+                        showDialog(
+                            context: context,
+                            builder: (c) {
+                              return ErrorDialog(
+                                message: "new address has been saved.",
+                              );
+                            });
+                        // formKey.currentState!.reset();
+                      });
                     },
                     child: Text(
                       'save the address',
