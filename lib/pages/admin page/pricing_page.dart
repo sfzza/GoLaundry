@@ -315,16 +315,16 @@ class _PricingPageState extends State<PricingPage> {
 
                       final priceMap = Pricing(
                               id_laundry: sharedPreferences!.getString("uid"),
-                              tshirt: _tshirt.text.trim(),
+                              tshirt: int.parse(_tshirt.text),
                               // tshirt: int.tryParse(_tshirt.text.trim()),
-                              dress: _dress.text.trim(),
-                              bottom: _bottom.text.trim(),
-                              underclothes: _underclothes.text.trim(),
-                              jeans: _jeans.text.trim(),
-                              bag: _bag.text.trim(),
-                              shoes: _shoes.text.trim(),
-                              bedsheet: _bedsheet.text.trim(),
-                              blanket: _blanket.text.trim())
+                              dress: int.parse(_dress.text),
+                              bottom: int.parse(_bottom.text),
+                              underclothes: int.parse(_underclothes.text),
+                              jeans: int.parse(_jeans.text),
+                              bag: int.parse(_bag.text),
+                              shoes: int.parse(_shoes.text),
+                              bedsheet: int.parse(_bedsheet.text),
+                              blanket: int.parse(_blanket.text))
                           .toJson();
 
                       FirebaseFirestore.instance

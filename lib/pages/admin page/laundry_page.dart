@@ -62,7 +62,7 @@ class _LaundryPageState extends State<LaundryPage> {
                       child: LaundryDetail(
                         laundry_name: snapshot.data?["laundry_name"],
                         laundry_address: snapshot.data?["laundry_address"],
-                        laundry_fare: snapshot.data?["laundry_fare"],
+                        laundry_fare: "${snapshot.data?["laundry_fare"]}",
                         laundry_hour: snapshot.data?["laundry_hour"],
                         laundry_phone: snapshot.data?["laundry_phone"],
                       ),

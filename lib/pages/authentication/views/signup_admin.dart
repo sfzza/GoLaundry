@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:golaundry/pages/admin%20page/admin_page.dart';
@@ -223,7 +224,7 @@ class _adminSignupState extends State<adminSignup> {
       "laundry_phone": phoneTextEditingController.text.trim(),
       "laundry_password": passwordTextEditingController.text.trim(),
       "laundry_address": completeAddress,
-      "laundry_fare": fareTextEditingController.text.trim(),
+      "laundry_fare": int.parse(fareTextEditingController.text),
       "laundry_hour": operationHourTextEditingController.text.trim(),
       "status": "approved",
       "lat": position!.latitude,
@@ -279,6 +280,7 @@ class _adminSignupState extends State<adminSignup> {
               right: 54,
             ),
             child: TextFormField(
+                autocorrect: false,
                 controller: emailTextEditingController,
                 cursorColor: Color(0xff1A374D),
                 decoration: InputDecoration(
@@ -303,6 +305,7 @@ class _adminSignupState extends State<adminSignup> {
           Padding(
             padding: const EdgeInsets.only(left: 54, right: 54),
             child: TextFormField(
+                autocorrect: false,
                 controller: nameTextEditingController,
                 cursorColor: Color(0xff1A374D),
                 decoration: InputDecoration(
@@ -327,6 +330,7 @@ class _adminSignupState extends State<adminSignup> {
           Padding(
             padding: const EdgeInsets.only(left: 54, right: 54),
             child: TextFormField(
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 controller: phoneTextEditingController,
                 cursorColor: Color(0xff1A374D),
                 decoration: InputDecoration(
@@ -351,6 +355,10 @@ class _adminSignupState extends State<adminSignup> {
           Padding(
             padding: const EdgeInsets.only(left: 54, right: 54),
             child: TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.deny(RegExp(r'\s'))
+                ],
+                autocorrect: false,
                 controller: passwordTextEditingController,
                 cursorColor: Color(0xff1A374D),
                 obscureText: true,

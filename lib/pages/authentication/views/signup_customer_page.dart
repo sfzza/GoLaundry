@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:golaundry/pages/customer%20page/customer_page.dart';
 import 'package:golaundry/pages/authentication/views/customer_verification.dart.dart';
 import 'package:golaundry/pages/global/global.dart';
@@ -127,6 +128,8 @@ class _customerSignupState extends State<customerSignup> {
         Padding(
           padding: const EdgeInsets.only(left: 54, right: 54),
           child: TextFormField(
+              inputFormatters: [],
+              autocorrect: false,
               controller: emailTextEditingController,
               cursorColor: Color(0xff1A374D),
               decoration: InputDecoration(
@@ -149,6 +152,10 @@ class _customerSignupState extends State<customerSignup> {
         Padding(
           padding: const EdgeInsets.only(left: 54, right: 54),
           child: TextFormField(
+              autocorrect: false,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))
+              ],
               controller: nameTextEditingController,
               cursorColor: Color(0xff1A374D),
               decoration: InputDecoration(
@@ -171,6 +178,7 @@ class _customerSignupState extends State<customerSignup> {
         Padding(
           padding: const EdgeInsets.only(left: 54, right: 54),
           child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               controller: phoneTextEditingController,
               cursorColor: Color(0xff1A374D),
               decoration: InputDecoration(
@@ -193,6 +201,10 @@ class _customerSignupState extends State<customerSignup> {
         Padding(
           padding: const EdgeInsets.only(left: 54, right: 54),
           child: TextFormField(
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp(r'\s'))
+              ],
+              autocorrect: false,
               controller: passwordTextEditingController,
               cursorColor: Color(0xff1A374D),
               obscureText: true,

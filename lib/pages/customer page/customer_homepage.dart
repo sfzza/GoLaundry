@@ -101,7 +101,6 @@ class _customerHomePageState extends State<customerHomePage> {
                 }
                 return SizedBox(
                   height: 260,
-                  // width: 300,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: snapshot.data!.docs.map((docs) {
