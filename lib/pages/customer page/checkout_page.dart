@@ -64,7 +64,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         Padding(
                           padding: const EdgeInsets.only(right: 25),
                           child: Text(
-                            "Pickup Date",
+                            "Wednesday, June 15 2022",
                             style: detailSubtitleFieldTextStyle,
                           ),
                         )
@@ -183,7 +183,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   return Positioned(
                       bottom: 0,
                       child: TotalPayment(
-                        total: snapshot.data?["laundry_fare"],
+                        total: "${snapshot.data?["laundry_fare"]}",
                       ));
                 })
           ],

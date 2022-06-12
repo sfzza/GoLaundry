@@ -156,7 +156,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 Positioned(
                     bottom: 0,
                     child: TotalPayment(
-                      total: snapshot.data?["laundry_fare"],
+                      total: "${snapshot.data?["laundry_fare"]}",
                     ))
               ]);
             })

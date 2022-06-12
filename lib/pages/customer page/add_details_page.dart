@@ -84,39 +84,39 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                         children: [
                           Details(
                             item: 'Tshirt',
-                            price: snapshot.data?["tshirt"],
+                            price: "${snapshot.data?["tshirt"]}",
                           ),
                           Details(
                             item: 'Dress',
-                            price: snapshot.data?["dress"],
+                            price: "${snapshot.data?["dress"]}",
                           ),
                           Details(
                             item: 'Bottom',
-                            price: snapshot.data?["bottom"],
+                            price: "${snapshot.data?["bottom"]}",
                           ),
                           Details(
                             item: 'Underclothes',
-                            price: snapshot.data?["underclothes"],
+                            price: "${snapshot.data?["underclothes"]}",
                           ),
                           Details(
                             item: 'Jeans',
-                            price: snapshot.data?["jeans"],
+                            price: "${snapshot.data?["jeans"]}",
                           ),
                           Details(
                             item: 'Bag',
-                            price: snapshot.data?["bag"],
+                            price: "${snapshot.data?["bag"]}",
                           ),
                           Details(
                             item: 'Shoes',
-                            price: snapshot.data?["shoes"],
+                            price: "${snapshot.data?["shoes"]}",
                           ),
                           Details(
                             item: 'Bed Sheet',
-                            price: snapshot.data?["bedsheet"],
+                            price: "${snapshot.data?["bedsheet"]}",
                           ),
                           Details(
                             item: 'Blanket',
-                            price: snapshot.data?["blanket"],
+                            price: "${snapshot.data?["blanket"]}",
                           ),
                           SizedBox(
                             height: 130,
@@ -137,7 +137,7 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                 return Positioned(
                     bottom: 0,
                     child: TotalPayment(
-                      total: snapshot.data?["laundry_fare"],
+                      total: "${snapshot.data?["laundry_fare"]} ",
                     ));
               })
         ],

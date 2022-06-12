@@ -1,15 +1,15 @@
 class Pricing {
   // String? id_price;
   String? id_laundry;
-  String? tshirt;
-  String? dress;
-  String? bottom;
-  String? underclothes;
-  String? jeans;
-  String? bag;
-  String? shoes;
-  String? bedsheet;
-  String? blanket;
+  int? tshirt;
+  int? dress;
+  int? bottom;
+  int? underclothes;
+  int? jeans;
+  int? bag;
+  int? shoes;
+  int? bedsheet;
+  int? blanket;
 
   Pricing(
       {
