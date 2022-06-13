@@ -55,6 +55,8 @@ class _adminSignupState extends State<adminSignup> {
   // }
 
   getCurrentLocation() async {
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
     Position newPosition = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
@@ -238,6 +240,7 @@ class _adminSignupState extends State<adminSignup> {
         .setString("name", nameTextEditingController.text.trim());
     await sharedPreferences!
         .setString("address", locationTextEditingController.text.trim());
+
     // await sharedPreferences!.setStringList("laundry_tags", ['garbageValue']);
   }
 

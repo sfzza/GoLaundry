@@ -9,10 +9,9 @@ import 'package:golaundry/pages/models/address.dart';
 import 'package:golaundry/pages/widgets/error_dialog.dart';
 import 'package:golaundry/pages/widgets/text_field.dart';
 import 'package:golaundry/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomerAddAddressPage extends StatefulWidget {
-  const CustomerAddAddressPage({Key? key}) : super(key: key);
-
   @override
   State<CustomerAddAddressPage> createState() => _CustomerAddAddressPageState();
 }
@@ -170,21 +169,22 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                     ),
                     onPressed: () {
                       final model = Address(
-                        state: _state.text.trim(),
-                        fullAddress: _completeAddress.text.trim(),
-                        flatNumber: _flatNumber.text.trim(),
-                        city: _city.text.trim(),
-                        lat: position!.latitude,
-                        lng: position!.longitude,
-                      ).toJson();
+                              state: _state.text.trim(),
+                              fullAddress: _completeAddress.text.trim(),
+                              flatNumber: _flatNumber.text.trim(),
+                              city: _city.text.trim(),
+                              lat: position!.latitude,
+                              lng: position!.longitude,
+                              status: "unselected")
+                          .toJson();
 
                       FirebaseFirestore.instance
                           .collection("customers")
                           .doc(sharedPreferences!.getString("uid"))
                           .collection("cust_address")
-                          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+                          .doc(sharedPreferences!.getString("uid"))
                           .set(model)
-                          .then((value) {
+                          .then((value) async {
                         showDialog(
                             context: context,
                             builder: (c) {
@@ -192,6 +192,12 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                                 message: "new address has been saved.",
                               );
                             });
+                        sharedPreferences =
+                            await SharedPreferences.getInstance();
+                        await sharedPreferences!
+                            .setDouble("lat", position!.latitude);
+                        await sharedPreferences!
+                            .setDouble("lng", position!.longitude);
                         // formKey.currentState!.reset();
                       });
                     },

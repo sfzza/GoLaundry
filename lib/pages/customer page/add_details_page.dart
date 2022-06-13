@@ -21,6 +21,7 @@ class AddDetailsPage extends StatefulWidget {
 }
 
 class _AddDetailsPageState extends State<AddDetailsPage> {
+  TextEditingController counterTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
