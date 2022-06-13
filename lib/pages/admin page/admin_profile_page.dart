@@ -19,6 +19,19 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
   TextEditingController fareTextEditingController = TextEditingController();
   TextEditingController hourTextEditingController = TextEditingController();
 
+  // void _handleImageSelection() async {
+  //   final result = await ImagePicker().pickImage(
+  //     imageQuality: 70,
+  //     maxWidth: 1440,
+  //     source: ImageSource.gallery,
+  //   );
+
+  //   if (result != null) {
+  //     final bytes = await result.readAsBytes();
+  //     final image = await decodeImageFromList(bytes);
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

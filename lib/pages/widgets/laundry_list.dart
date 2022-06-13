@@ -6,7 +6,11 @@ import 'package:golaundry/theme.dart';
 class LaundryList extends StatefulWidget {
   final String laundry_name;
   final String laundry_hour;
-  LaundryList({required this.laundry_name, required this.laundry_hour});
+  final String distance;
+  LaundryList(
+      {required this.laundry_name,
+      required this.laundry_hour,
+      required this.distance});
 
   @override
   State<LaundryList> createState() => _LaundryListState();
@@ -60,6 +64,10 @@ class _LaundryListState extends State<LaundryList> {
                   )
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 20),
+              child: Text(widget.distance),
             )
           ],
         ),

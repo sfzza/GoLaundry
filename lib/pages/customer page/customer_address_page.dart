@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -78,20 +78,41 @@ class _customerAddressPageState extends State<customerAddressPage> {
               );
             }),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 50),
               child: IconButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const CustomerAddAddressPage()),
+                        builder: (context) => CustomerAddAddressPage()),
                   );
                 },
-                icon: const Icon(
-                  Icons.add_circle_rounded,
-                  size: 40,
-                  color: Color(0xffB1D0E0),
-                ),
+                icon: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    stream: FirebaseFirestore.instance
+                        .collection("customers")
+                        .doc(sharedPreferences!.getString("uid"))
+                        .collection("cust_address")
+                        .doc(sharedPreferences!.getString("uid"))
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!(snapshot).hasData) {
+                        return Icon(
+                          Icons.edit,
+                          size: 40,
+                          color: Color(0xffB1D0E0),
+                        );
+                        // Icon(
+                        //   Icons.add_circle_rounded,
+                        //   size: 40,
+                        //   color: Color(0xffB1D0E0),
+                        // );
+                      }
+                      return Icon(
+                        Icons.edit,
+                        size: 40,
+                        color: Color(0xffB1D0E0),
+                      );
+                    }),
               ),
             ),
           ],

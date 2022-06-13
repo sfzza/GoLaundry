@@ -32,16 +32,20 @@ class _AddressDesignState extends State<AddressDesign> {
           children: [
             Row(
               children: [
-                Radio(
-                  activeColor: Color(0xff1A374D),
-                  value: widget.value!,
-                  groupValue: widget.selectedIndex!,
-                  onChanged: (val) {
-                    Provider.of<AddressChanger>(context, listen: false)
-                        .displayResult(val);
-                    print(val);
-                  },
+                SizedBox(
+                  width: 30,
                 ),
+                // Radio(
+                //   activeColor: Color(0xff1A374D),
+                //   value: widget.value!,
+                //   groupValue: widget.selectedIndex!,
+                //   onChanged: (val) {
+                //     Provider.of<AddressChanger>(context, listen: false)
+                //         .displayResult(val);
+
+                //     print(val);
+                //   },
+                // ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

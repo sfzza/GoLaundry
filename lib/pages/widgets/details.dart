@@ -19,13 +19,6 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   TextEditingController counterTextEditingController = TextEditingController();
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +52,13 @@ class _DetailsState extends State<Details> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: NumberInputPrefabbed.roundedButtons(
-                onChanged: ((num newValue) {}),
-                onIncrement: (num incValue) {
-                  // print("inc value is $incValue");
-                },
-                onDecrement: (num decValue) {
-                  // print("dec value is $decValue");
-                },
+                onChanged: ((newValue) {}),
+                // onIncrement: (num incValue) {
+                //   print("inc value is $incValue");
+                // },
+                // onDecrement: (num decValue) {
+                //   // print("dec value is $decValue");
+                // },
                 decIconColor: Color(0xffB1D0E0),
                 incIconColor: Color(0xffB1D0E0),
                 style: detailTitleFieldTextStyle,

@@ -7,6 +7,7 @@ class Address {
   String? fullAddress;
   double? lat;
   double? lng;
+  String? status;
 
   Address(
       {this.flatNumber,
@@ -14,7 +15,8 @@ class Address {
       this.state,
       this.fullAddress,
       this.lat,
-      this.lng});
+      this.lng,
+      this.status});
 
   Address.fromJson(Map<String, dynamic> json) {
     flatNumber = json['flatNumber'];
@@ -23,6 +25,7 @@ class Address {
     fullAddress = json['fullAddress'];
     lat = json['lat'];
     lng = json['lng'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +36,7 @@ class Address {
     data['fullAddress'] = fullAddress;
     data['lat'] = lat;
     data['lng'] = lng;
+    data['status'] = status;
     return data;
   }
 }

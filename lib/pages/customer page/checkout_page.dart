@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme.dart';
 import '../global/global.dart';
+import '../models/address.dart';
 import '../widgets/progress_bar.dart';
 import '../widgets/total_payment.dart';
 
@@ -14,7 +15,8 @@ class CheckoutPage extends StatefulWidget {
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
   final String id_laundry;
-  CheckoutPage({required this.id_laundry});
+  final Address? model;
+  CheckoutPage({required this.id_laundry, this.model});
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
@@ -98,35 +100,44 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 2),
-                    child: Container(
-                      height: 100,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(color: Color(0xffB1D0E0)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25),
-                            child: Text(
-                              "Address",
-                              style: detailTitleFieldTextStyle,
+                  StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                      stream: FirebaseFirestore.instance
+                          .collection("customers")
+                          .doc(sharedPreferences!.getString("uid")!)
+                          .collection("cust_address")
+                          .doc(sharedPreferences!.getString("uid")!)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: 2),
+                          child: Container(
+                            height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(color: Color(0xffB1D0E0)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 25),
+                                  child: Text(
+                                    "Address",
+                                    style: detailTitleFieldTextStyle,
+                                  ),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.only(right: 25),
+                                    child: Container(
+                                      width: 150,
+                                      child: Text(
+                                        snapshot.data?["fullAddress"],
+                                        style: detailSubtitleFieldTextStyle,
+                                      ),
+                                    ))
+                              ],
                             ),
                           ),
-                          Padding(
-                              padding: const EdgeInsets.only(right: 25),
-                              child: Container(
-                                width: 150,
-                                child: Text(
-                                  "Jalan Citarum Bi 9 Wismatropodo, Waru, Sidoarjo",
-                                  style: detailSubtitleFieldTextStyle,
-                                ),
-                              ))
-                        ],
-                      ),
-                    ),
-                  ),
+                        );
+                      }),
                   Padding(
                     padding: EdgeInsets.only(top: 2),
                     child: Container(
