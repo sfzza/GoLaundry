@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/admin%20page/history_admin_page.dart';
 import 'package:golaundry/pages/admin%20page/onprogress_admin_page.dart';
+import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/theme.dart';
+
+import '../widgets/progress_bar.dart';
 
 class AdminRequestPage extends StatelessWidget {
   List<Tab> requestTab = [
@@ -37,8 +41,19 @@ class AdminRequestPage extends StatelessWidget {
             ),
             preferredSize: Size.fromHeight(110),
           ),
-          body:
-              TabBarView(children: [OnprogressAdminPage(), historyAdminPage()]),
+          body: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("booking")
+                  .where("id_laundry",
+                      isEqualTo: sharedPreferences!.getString("uid"))
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return circularProgress();
+                }
+                return TabBarView(
+                    children: [OnprogressAdminPage(), historyAdminPage()]);
+              }),
         ),
       ),
     );

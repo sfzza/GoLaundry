@@ -6,6 +6,7 @@ import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 import 'package:golaundry/pages/global/global.dart';
 
+import '../userlevel_page.dart';
 import '../widgets/laundry_choices.dart';
 
 class customerHomePage extends StatefulWidget {
@@ -127,6 +128,25 @@ class _customerHomePageState extends State<customerHomePage> {
                   ),
                 );
               }),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          width: 400,
+          height: 40,
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: () {
+              firebaseAuth.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => UserLevelPage()),
+              );
+            },
+            child: Text('Signout'),
+            style: ElevatedButton.styleFrom(primary: Colors.red),
+          ),
         ),
       ],
     );

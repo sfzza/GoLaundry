@@ -28,9 +28,17 @@ class _AdminHomePageState extends State<AdminHomePage> {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 30, bottom: 10),
-          child: Text(
-            "Welcome to GoLaundry!",
-            style: nameTextStyle,
+          child: Row(
+            children: [
+              Text(
+                "Welcome to GoLaundry! ",
+                style: nameTextStyle,
+              ),
+              Text(
+                sharedPreferences!.getString("name")!,
+                style: nameTextStyle,
+              )
+            ],
           ),
         ),
         Padding(

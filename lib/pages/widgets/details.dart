@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
@@ -42,48 +42,88 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+      padding: EdgeInsets.only(top: 20),
       child: Container(
-        height: 120,
+        height: 80,
         decoration: BoxDecoration(
           color: Color(0xffB1D0E0),
         ),
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Image(
+            //     image: AssetImage("assets/laundry.png"),
+            //     height: 80,
+            //     width: 80,
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: Row(
+              padding: const EdgeInsets.only(left: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     widget.item,
                     style: detailTitleFieldTextStyle,
                   ),
-                  Text(" : ", style: detailTitleFieldTextStyle),
-                  Text("RP ", style: detailSubtitleFieldTextStyle),
-                  Text(
-                    widget.price,
-                    style: detailSubtitleFieldTextStyle,
+                  SizedBox(
+                    height: 2,
+                  ),
+                  // Text(
+                  //   ": ",
+                  //   style: detailTitleFieldTextStyle,
+                  // ),
+                  Row(
+                    children: [
+                      Text("RP ", style: detailSubtitleFieldTextStyle),
+                      Text(
+                        widget.price,
+                        style: detailSubtitleFieldTextStyle,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: NumberInputPrefabbed.roundedButtons(
-                // onDecrement: widget.decrement(counter),
-                // onIncrement: increment(),
-                // onSubmitted: ,
-                onChanged: ((newValue) {}),
-                decIconColor: Color(0xffB1D0E0),
-                incIconColor: Color(0xffB1D0E0),
-                style: detailTitleFieldTextStyle,
-                controller: counterTextEditingController,
-                incDecBgColor: Color(0xff406882),
-                min: 0,
-                max: 20,
-                initialValue: 0,
-                buttonArrangement: ButtonArrangement.incRightDecLeft,
+              padding: const EdgeInsets.only(right: 20),
+              child: Container(
+                height: 35,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Color(0xff406882),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.remove,
+                          color: Color(0xffB1D0E0),
+                        ),
+                      ),
+                      Text(
+                        "1",
+                        style: TextStyle(color: Color(0xffB1D0E0)),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.add,
+                          color: Color(0xffB1D0E0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             )
           ],

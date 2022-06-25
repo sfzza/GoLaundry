@@ -98,7 +98,7 @@ class _customerSignupState extends State<customerSignup> {
       "cust_name": nameTextEditingController.text.trim(),
       "cust_phone": phoneTextEditingController.text.trim(),
       "cust_password": passwordTextEditingController.text.trim(),
-      "status": "approved",
+      "status": "customer",
     });
 
     sharedPreferences = await SharedPreferences.getInstance();
@@ -106,6 +106,7 @@ class _customerSignupState extends State<customerSignup> {
     await sharedPreferences!.setString("email", currentUser.email.toString());
     await sharedPreferences!
         .setString("name", nameTextEditingController.text.trim());
+    await sharedPreferences!.setString("status", "customer");
 
     // await sharedPreferences!
     //     .setString("phone", phoneTextEditingController.text.trim());

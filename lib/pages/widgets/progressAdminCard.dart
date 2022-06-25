@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:golaundry/theme.dart';
 
 class ProgressAdminCard extends StatefulWidget {
-  const ProgressAdminCard({Key? key}) : super(key: key);
-
+  // const ProgressAdminCard({Key? key}) : super(key: key);
+  final String cust_email;
+  final String cust_address;
+  final String total;
+  ProgressAdminCard(
+      {required this.cust_address,
+      required this.cust_email,
+      required this.total});
   @override
   State<ProgressAdminCard> createState() => _ProgressAdminCardState();
 }
@@ -23,14 +29,14 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "nurulizza.safira@gmail.com",
+                  widget.cust_email,
                   style: bookingEmailTextStyle,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  "jalan banyuwangi nomor 56 blok A Waru Sidoarjo Jawa Timur Indonesia",
+                  widget.cust_address,
                   style: bookingAddressTextStyle,
                   maxLines: 2,
                 ),
@@ -44,7 +50,7 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                       style: bookingTotalTextStyle,
                     ),
                     Text(
-                      "RP 7000",
+                      widget.total,
                       style: bookingEmailTextStyle,
                     )
                   ],
