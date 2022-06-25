@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/admin%20page/history_admin_page.dart';
+import 'package:golaundry/pages/admin%20page/onprogress_admin_page.dart';
 import 'package:golaundry/theme.dart';
 
 class AdminRequestPage extends StatelessWidget {
@@ -35,22 +37,8 @@ class AdminRequestPage extends StatelessWidget {
             ),
             preferredSize: Size.fromHeight(110),
           ),
-          body: TabBarView(children: [
-            Center(
-              child: Text(
-                'currently you dont have any order on progress',
-                style: noHistoryTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Center(
-              child: Text(
-                'currently you dont have any order history',
-                style: noHistoryTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ]),
+          body:
+              TabBarView(children: [OnprogressAdminPage(), historyAdminPage()]),
         ),
       ),
     );

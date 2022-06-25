@@ -109,7 +109,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return circularProgress();
+                          return Text("No Address");
                         }
                         return Padding(
                           padding: EdgeInsets.only(top: 2),

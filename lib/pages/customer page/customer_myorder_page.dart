@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/customer%20page/history_customer_page.dart';
+import 'package:golaundry/pages/customer%20page/onprogress_customer_page.dart';
 import 'package:golaundry/theme.dart';
 
 class customerMyOrderPage extends StatelessWidget {
@@ -35,22 +37,8 @@ class customerMyOrderPage extends StatelessWidget {
             ),
             preferredSize: Size.fromHeight(110),
           ),
-          body: TabBarView(children: [
-            Center(
-              child: Text(
-                'currently you dont have any order on progress',
-                style: noHistoryTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Center(
-              child: Text(
-                'currently you dont have any order history',
-                style: noHistoryTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ]),
+          body: TabBarView(
+              children: [OnprogressCustomerPage(), HistoryCustomerPage()]),
         ),
       ),
     );
