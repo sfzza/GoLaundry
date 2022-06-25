@@ -86,6 +86,7 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                           Details(
                             item: 'Tshirt',
                             price: "${snapshot.data?["tshirt"]}",
+                            // counter: snapshot.data?["tshirt"],
                           ),
                           Details(
                             item: 'Dress',

@@ -13,12 +13,31 @@ class Details extends StatefulWidget {
   State<Details> createState() => _DetailsState();
   final String item;
   final String price;
+  // final int? counter;
+  final void decrement;
+  final void increment;
 
-  Details({required this.item, required this.price});
+  Details(
+      {required this.item,
+      required this.price,
+      this.decrement,
+      this.increment});
 }
 
 class _DetailsState extends State<Details> {
   TextEditingController counterTextEditingController = TextEditingController();
+  int counter = 0;
+  increment() {
+    setState(() {
+      counter++;
+    });
+  }
+
+  decrement() {
+    setState(() {
+      counter--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +71,10 @@ class _DetailsState extends State<Details> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: NumberInputPrefabbed.roundedButtons(
+                // onDecrement: widget.decrement(counter),
+                // onIncrement: increment(),
+                // onSubmitted: ,
                 onChanged: ((newValue) {}),
-                // onIncrement: (num incValue) {
-                //   print("inc value is $incValue");
-                // },
-                // onDecrement: (num decValue) {
-                //   // print("dec value is $decValue");
-                // },
                 decIconColor: Color(0xffB1D0E0),
                 incIconColor: Color(0xffB1D0E0),
                 style: detailTitleFieldTextStyle,
