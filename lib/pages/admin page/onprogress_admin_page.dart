@@ -47,7 +47,8 @@ class _OnprogressPageState extends State<OnprogressAdminPage> {
                   id_booking: data["id_booking"],
                   cust_address: data["cust_address"],
                   cust_email: data["cust_email"],
-                  total: "${data["laundry_fare"] + data["price"]}");
+                  total:
+                      "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}");
             }).toList());
           }),
     );

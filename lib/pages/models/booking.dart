@@ -12,6 +12,7 @@ class Booking {
   String? pickup;
   int? price;
   String? statusBook;
+  int? quantity;
 
   Booking(
       {
@@ -25,7 +26,8 @@ class Booking {
       this.laundry_fare,
       this.laundry_name,
       this.pickup,
-      this.statusBook});
+      this.statusBook,
+      this.quantity});
 
   Booking.fromJson(Map<String, dynamic> json) {
     // id_price = json['id_price'];
@@ -39,6 +41,7 @@ class Booking {
     id_booking = json['id_booking'];
     pickup = json['pickup'];
     statusBook = json['statusBook'];
+    quantity = json['quantity'];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +57,7 @@ class Booking {
     data['id_booking'] = id_booking;
     data['pickup'] = pickup;
     data['statusBook'] = statusBook;
+    data['quantity'] = quantity;
     return data;
   }
 

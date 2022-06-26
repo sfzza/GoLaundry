@@ -37,6 +37,7 @@ class _adminSignupState extends State<adminSignup> {
   TextEditingController operationHourTextEditingController =
       TextEditingController();
   TextEditingController fareTextEditingController = TextEditingController();
+  TextEditingController priceTextEditingController = TextEditingController();
 
   // XFile? imageXFile;
   // final ImagePicker _picker = ImagePicker();
@@ -183,6 +184,12 @@ class _adminSignupState extends State<adminSignup> {
           builder: (c) {
             return ErrorDialog(message: 'Please enter an address!');
           });
+    } else if (priceTextEditingController.text.isEmpty) {
+      showDialog(
+          context: context,
+          builder: (c) {
+            return ErrorDialog(message: 'Please enter the price!');
+          });
     } else {
       saveAdminInfoNow();
       LoadingDialog(message: 'make an account');
@@ -228,6 +235,9 @@ class _adminSignupState extends State<adminSignup> {
       "laundry_address": completeAddress,
       "laundry_fare": int.parse(fareTextEditingController.text),
       "laundry_hour": operationHourTextEditingController.text.trim(),
+      "price": int.parse(
+        priceTextEditingController.text.trim(),
+      ),
       "lat": position!.latitude,
       "lng": position!.longitude,
       // "laundry_tags": ['garbageValue'],
@@ -417,7 +427,33 @@ class _adminSignupState extends State<adminSignup> {
                 controller: fareTextEditingController,
                 cursorColor: Color(0xff1A374D),
                 decoration: InputDecoration(
-                  hintText: "Fare per 1 KM",
+                  hintText: "Fare Laundry",
+                  hintStyle: hintTextStyle,
+                  fillColor: Color(0xffB1D0E0),
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff406882), width: 3)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff1A374D), width: 3)),
+                ),
+                style: textFieldTextStyle),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 54, right: 54),
+            child: TextFormField(
+                autocorrect: false,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                controller: priceTextEditingController,
+                cursorColor: Color(0xff1A374D),
+                decoration: InputDecoration(
+                  hintText: "Price per 1 Kg",
                   hintStyle: hintTextStyle,
                   fillColor: Color(0xffB1D0E0),
                   filled: true,

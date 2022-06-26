@@ -41,7 +41,8 @@ class _historyAdminPageState extends State<historyAdminPage> {
               return HistoryAdminCard(
                 cust_address: data["cust_address"],
                 cust_email: data["cust_email"],
-                total: "${data["price"] + data["laundry_fare"]}",
+                total:
+                    "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}",
                 statusBook: data['statusBook'],
               );
             }).toList());

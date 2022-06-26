@@ -27,6 +27,23 @@ class AddDetailsPage extends StatefulWidget {
 
 class _AddDetailsPageState extends State<AddDetailsPage> {
   DateTime dateTime = DateTime.now();
+  int quantity = 1;
+  increment() {
+    setState(() {
+      if (quantity <= 19) {
+        quantity++;
+      }
+    });
+  }
+
+  decrement() {
+    setState(() {
+      if (quantity >= 2) {
+        quantity--;
+      }
+    });
+  }
+
   TextEditingController counterTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -46,31 +63,6 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
               Navigator.pop(context);
             },
           ),
-          // actions: [
-          //   StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-          //       stream: FirebaseFirestore.instance
-          //           .collection("admins")
-          //           .doc(widget.id_laundry)
-          //           .snapshots(),
-          //       builder: (context, snapshot) {
-          //         if (!snapshot.hasData) {
-          //           return circularProgress();
-          //         }
-          //         return IconButton(
-          //           icon: Icon(Icons.arrow_forward_ios_outlined),
-          //           color: Color(0xff1A374D),
-          //           onPressed: () {
-          //             Navigator.push(
-          //               context,
-          //               MaterialPageRoute(
-          //                   builder: (context) => SchedulePage(
-          //                         id_laundry: snapshot.data?["id_laundry"],
-          //                       )),
-          //             );
-          //           },
-          //         );
-          //       }),
-          // ],
           elevation: 0,
           backgroundColor: Color(0xffB1D0E0),
         ),
@@ -87,10 +79,94 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                       .snapshots(),
                   builder: (BuildContext, snapshot) {
                     return snapshot.hasData
-                        ? Details(
-                            item: '1 Kilogram',
-                            price: "${snapshot.data?["price"]}",
-                            // counter: snapshot.data?["tshirt"],
+                        ? Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: Container(
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: Color(0xffB1D0E0),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "1 Kilogram",
+                                          style: detailTitleFieldTextStyle,
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text("RP ",
+                                                style:
+                                                    detailSubtitleFieldTextStyle),
+                                            Text(
+                                              "${snapshot.data?["price"]}",
+                                              style:
+                                                  detailSubtitleFieldTextStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    child: Container(
+                                      height: 35,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xff406882),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(4),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                decrement();
+                                              },
+                                              child: Icon(
+                                                Icons.remove,
+                                                color: Color(0xffB1D0E0),
+                                              ),
+                                            ),
+                                            Text(
+                                              quantity.toString(),
+                                              style: TextStyle(
+                                                  color: Color(0xffB1D0E0)),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                increment();
+                                              },
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Color(0xffB1D0E0),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           )
                         : SizedBox();
                   }),
@@ -311,6 +387,7 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                                     .data?["laundry_name"],
                                                 laundry_fare: snapshot
                                                     .data?["laundry_fare"],
+                                                quantity: quantity,
                                                 price: snapshot.data?["price"],
                                                 statusBook: "ongoing")
                                             .toJson();
@@ -350,7 +427,7 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                     bottom: 0,
                     child: TotalPayment(
                       total:
-                          "${snapshot.data?["laundry_fare"] + snapshot.data?["price"]}",
+                          "${snapshot.data?["laundry_fare"] + (snapshot.data?["price"] * quantity)}",
                     ));
               })
         ],

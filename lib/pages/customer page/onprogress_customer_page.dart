@@ -42,7 +42,8 @@ class _OnprogressCustomerPageState extends State<OnprogressCustomerPage> {
                     cust_address: data["cust_address"],
                     cust_email: data["cust_email"],
                     laundry_name: data["laundry_name"],
-                    total: "${data["price"] + data["laundry_fare"]}");
+                    total:
+                        "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}");
               }).toList(),
             );
           }),

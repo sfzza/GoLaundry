@@ -43,7 +43,8 @@ class _HistoryCustomerPageState extends State<HistoryCustomerPage> {
                   cust_email: data["cust_email"],
                   laundry_name: data['laundry_name'],
                   statusBook: data['statusBook'],
-                  total: "${data["price"] + data["laundry_fare"]}",
+                  total:
+                      "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}",
                 );
               }).toList(),
             );

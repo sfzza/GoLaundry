@@ -169,21 +169,22 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                     ),
                     onPressed: () {
                       final model = Address(
-                              state: _state.text.trim(),
-                              fullAddress: _completeAddress.text.trim(),
-                              flatNumber: _flatNumber.text.trim(),
-                              city: _city.text.trim(),
-                              lat: position!.latitude,
-                              lng: position!.longitude,
-                              status: "unselected")
+                        state: _state.text.trim(),
+                        fullAddress: _completeAddress.text.trim(),
+                        flatNumber: _flatNumber.text.trim(),
+                        city: _city.text.trim(),
+                        lat: position!.latitude,
+                        lng: position!.longitude,
+                      )
+                          // status: "unselected")
                           .toJson();
 
                       FirebaseFirestore.instance
                           .collection("customers")
                           .doc(sharedPreferences!.getString("uid"))
-                          .collection("cust_address")
-                          .doc(sharedPreferences!.getString("uid"))
-                          .set(model)
+                          // .collection("cust_address")
+                          // .doc(sharedPreferences!.getString("uid"))
+                          .update(model)
                           .then((value) async {
                         showDialog(
                             context: context,
