@@ -54,19 +54,18 @@ createPricing(
   }
 }
 
-custBookingUpdate({
-  context,
-  bookStatus,
-  bookId,
+updateBookingStatus({
+  status,
+  id_booking,
 }) async {
-  Map<String, dynamic> custBookUpdateMap = {
-    "bookStatus": bookStatus,
+  Map<String, dynamic> updateBookingStatusMap = {
+    "status": status,
   };
 
   FirebaseFirestore.instance
-      .collection("Booking")
-      .doc(bookId)
-      .update(custBookUpdateMap);
+      .collection("booking")
+      .doc(id_booking)
+      .update(updateBookingStatusMap);
 
   // Fluttertoast.showToast(msg: "Updated");
   // Navigator.pushAndRemoveUntil(

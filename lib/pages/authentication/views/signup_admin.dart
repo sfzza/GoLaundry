@@ -228,10 +228,10 @@ class _adminSignupState extends State<adminSignup> {
       "laundry_address": completeAddress,
       "laundry_fare": int.parse(fareTextEditingController.text),
       "laundry_hour": operationHourTextEditingController.text.trim(),
-      "status": "approved",
       "lat": position!.latitude,
       "lng": position!.longitude,
       // "laundry_tags": ['garbageValue'],
+      "status": "approved",
     });
     sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences!.setString("uid", currentUser.uid);
@@ -241,7 +241,7 @@ class _adminSignupState extends State<adminSignup> {
     await sharedPreferences!
         .setString("address", locationTextEditingController.text.trim());
 
-    // await sharedPreferences!.setStringList("laundry_tags", ['garbageValue']);
+    // await sharedPreferences!.setString("status", "admin");
   }
 
   @override

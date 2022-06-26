@@ -108,6 +108,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           .doc(sharedPreferences!.getString("uid")!)
                           .snapshots(),
                       builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Text("No Address");
+                        }
                         return Padding(
                           padding: EdgeInsets.only(top: 2),
                           child: Container(

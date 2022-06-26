@@ -198,6 +198,8 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                             .setDouble("lat", position!.latitude);
                         await sharedPreferences!
                             .setDouble("lng", position!.longitude);
+                        await sharedPreferences!
+                            .setString("address", _completeAddress.text.trim());
                         // formKey.currentState!.reset();
                       });
                     },

@@ -1,5 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:golaundry/pages/admin%20page/history_admin_page.dart';
+import 'package:golaundry/pages/admin%20page/onprogress_admin_page.dart';
+import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/theme.dart';
+
+import '../widgets/progress_bar.dart';
 
 class AdminRequestPage extends StatelessWidget {
   List<Tab> requestTab = [
@@ -15,43 +21,28 @@ class AdminRequestPage extends StatelessWidget {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Color(0xff6998AB),
-          appBar: PreferredSize(
-            child: AppBar(
-              title: Text(
-                'REQUEST',
-                style: titlePageTextStyle,
+            backgroundColor: Color(0xff6998AB),
+            appBar: PreferredSize(
+              child: AppBar(
+                title: Text(
+                  'REQUEST',
+                  style: titlePageTextStyle,
+                ),
+                elevation: 0,
+                backgroundColor: Color(0xffB1D0E0),
+                bottom: TabBar(
+                  unselectedLabelColor: Color(0xff6998AB),
+                  unselectedLabelStyle: tabBarTextStyle,
+                  labelColor: Color(0xff1A374D),
+                  labelStyle: tabBarTextStyle,
+                  indicatorColor: Color(0xff1A374D),
+                  tabs: requestTab,
+                ),
               ),
-              elevation: 0,
-              backgroundColor: Color(0xffB1D0E0),
-              bottom: TabBar(
-                unselectedLabelColor: Color(0xff6998AB),
-                unselectedLabelStyle: tabBarTextStyle,
-                labelColor: Color(0xff1A374D),
-                labelStyle: tabBarTextStyle,
-                indicatorColor: Color(0xff1A374D),
-                tabs: requestTab,
-              ),
+              preferredSize: Size.fromHeight(110),
             ),
-            preferredSize: Size.fromHeight(110),
-          ),
-          body: TabBarView(children: [
-            Center(
-              child: Text(
-                'currently you dont have any order on progress',
-                style: noHistoryTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Center(
-              child: Text(
-                'currently you dont have any order history',
-                style: noHistoryTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ]),
-        ),
+            body: TabBarView(
+                children: [OnprogressAdminPage(), historyAdminPage()])),
       ),
     );
   }

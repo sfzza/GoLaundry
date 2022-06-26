@@ -113,8 +113,8 @@ class _SchedulePageState extends State<SchedulePage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 90),
                         child: Container(
-                          width: 267,
-                          height: 50,
+                          width: 100,
+                          height: 35,
                           child: TextButton(
                             style: TextButton.styleFrom(
                               backgroundColor: Color(0xff406882),
@@ -143,9 +143,10 @@ class _SchedulePageState extends State<SchedulePage> {
                                   });
                               });
                             },
-                            child: Text(
-                              "Choose Your Date",
-                              style: buttonTextStyle,
+                            child: Icon(
+                              Icons.access_time,
+                              color: Color(0xffB1D0E0),
+                              size: 18,
                             ),
                           ),
                         ),

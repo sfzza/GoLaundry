@@ -144,3 +144,19 @@ TextStyle totalFieldTextStyle = GoogleFonts.roboto(
 // detail subtitle Text Style dark
 TextStyle totalSubFieldTextStyle = GoogleFonts.roboto(
     color: Color(0xffc4c4c4), fontSize: 24, fontWeight: FontWeight.w700);
+
+// booking email Text Style dark
+TextStyle bookingEmailTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w700);
+
+// booking address Text Style dark
+TextStyle bookingAddressTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w400);
+
+// booking total Text Style dark
+TextStyle bookingTotalTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w500);
+
+// booking email Text Style dark
+TextStyle bookingStatusTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 17, fontWeight: FontWeight.w700);
