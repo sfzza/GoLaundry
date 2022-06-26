@@ -21,40 +21,28 @@ class AdminRequestPage extends StatelessWidget {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Color(0xff6998AB),
-          appBar: PreferredSize(
-            child: AppBar(
-              title: Text(
-                'REQUEST',
-                style: titlePageTextStyle,
+            backgroundColor: Color(0xff6998AB),
+            appBar: PreferredSize(
+              child: AppBar(
+                title: Text(
+                  'REQUEST',
+                  style: titlePageTextStyle,
+                ),
+                elevation: 0,
+                backgroundColor: Color(0xffB1D0E0),
+                bottom: TabBar(
+                  unselectedLabelColor: Color(0xff6998AB),
+                  unselectedLabelStyle: tabBarTextStyle,
+                  labelColor: Color(0xff1A374D),
+                  labelStyle: tabBarTextStyle,
+                  indicatorColor: Color(0xff1A374D),
+                  tabs: requestTab,
+                ),
               ),
-              elevation: 0,
-              backgroundColor: Color(0xffB1D0E0),
-              bottom: TabBar(
-                unselectedLabelColor: Color(0xff6998AB),
-                unselectedLabelStyle: tabBarTextStyle,
-                labelColor: Color(0xff1A374D),
-                labelStyle: tabBarTextStyle,
-                indicatorColor: Color(0xff1A374D),
-                tabs: requestTab,
-              ),
+              preferredSize: Size.fromHeight(110),
             ),
-            preferredSize: Size.fromHeight(110),
-          ),
-          body: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("booking")
-                  .where("id_laundry",
-                      isEqualTo: sharedPreferences!.getString("uid"))
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return circularProgress();
-                }
-                return TabBarView(
-                    children: [OnprogressAdminPage(), historyAdminPage()]);
-              }),
-        ),
+            body: TabBarView(
+                children: [OnprogressAdminPage(), historyAdminPage()])),
       ),
     );
   }

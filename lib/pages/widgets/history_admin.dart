@@ -5,8 +5,17 @@ import 'package:flutter/material.dart';
 import '../../theme.dart';
 
 class HistoryAdminCard extends StatefulWidget {
-  const HistoryAdminCard({Key? key}) : super(key: key);
+  // const HistoryAdminCard({Key? key}) : super(key: key);
 
+  final String cust_email;
+  final String cust_address;
+  final String total;
+  final String statusBook;
+  HistoryAdminCard(
+      {required this.cust_address,
+      required this.cust_email,
+      required this.total,
+      required this.statusBook});
   @override
   State<HistoryAdminCard> createState() => _HistoryAdminCardState();
 }
@@ -15,7 +24,7 @@ class _HistoryAdminCardState extends State<HistoryAdminCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       child: Card(
         color: Color(0xffB1D0E0),
         child: Padding(
@@ -26,7 +35,7 @@ class _HistoryAdminCardState extends State<HistoryAdminCard> {
             children: [
               Center(
                   child: Text(
-                "[Rejected]",
+                "[${widget.statusBook}]",
                 style: bookingStatusTextStyle,
               )),
               Padding(
@@ -40,14 +49,14 @@ class _HistoryAdminCardState extends State<HistoryAdminCard> {
                 ),
               ),
               Text(
-                "nurulizza.safira@gmail.com",
+                widget.cust_email,
                 style: bookingEmailTextStyle,
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                "jalan banyuwangi nomor 56 blok A Waru Sidoarjo Jawa Timur Indonesia",
+                widget.cust_address,
                 style: bookingAddressTextStyle,
                 maxLines: 2,
               ),
@@ -61,7 +70,7 @@ class _HistoryAdminCardState extends State<HistoryAdminCard> {
                     style: bookingTotalTextStyle,
                   ),
                   Text(
-                    "RP 7000",
+                    widget.total,
                     style: bookingEmailTextStyle,
                   )
                 ],

@@ -13,8 +13,8 @@ class PricingPage extends StatefulWidget {
   // const PricingPage({Key? key}) : super(key: key);
 
   @override
-  final String? id_laundry;
-  PricingPage({this.id_laundry});
+  // final String? id_laundry;
+  // PricingPage({this.id_laundry});
   State<PricingPage> createState() => _PricingPageState();
 }
 
@@ -95,11 +95,8 @@ class _PricingPageState extends State<PricingPage> {
                       ),
                     ),
                     onPressed: () async {
-                      // if (formKey.currentState!.validate()) {
-
                       final price = Pricing(
                         price: int.parse(_price.text),
-                        // tshirt: int.tryParse(_tshirt.text.trim()),
                       ).toJson();
 
                       FirebaseFirestore.instance

@@ -292,13 +292,14 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                         ),
                                       ),
                                       onPressed: () {
+                                        String id = DateTime.now()
+                                            .millisecondsSinceEpoch
+                                            .toString();
                                         final booking = Booking(
                                                 id_cust: sharedPreferences!
                                                     .getString("uid"),
                                                 id_laundry: widget.id_laundry,
-                                                id_booking: DateTime.now()
-                                                    .millisecondsSinceEpoch
-                                                    .toString(),
+                                                id_booking: id,
                                                 cust_email: sharedPreferences!
                                                     .getString("email"),
                                                 cust_address: sharedPreferences!
@@ -315,9 +316,7 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                             .toJson();
                                         FirebaseFirestore.instance
                                             .collection("booking")
-                                            .doc(DateTime.now()
-                                                .millisecondsSinceEpoch
-                                                .toString())
+                                            .doc(id)
                                             .set(booking)
                                             .then((value) {
                                           showDialog(

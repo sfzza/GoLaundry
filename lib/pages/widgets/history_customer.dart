@@ -5,7 +5,18 @@ import 'package:flutter/material.dart';
 import '../../theme.dart';
 
 class HistoryCustomerCard extends StatefulWidget {
-  const HistoryCustomerCard({Key? key}) : super(key: key);
+  // const HistoryCustomerCard({Key? key}) : super(key: key);
+  final String laundry_name;
+  final String cust_email;
+  final String cust_address;
+  final String total;
+  final String statusBook;
+  HistoryCustomerCard(
+      {required this.cust_address,
+      required this.cust_email,
+      required this.laundry_name,
+      required this.total,
+      required this.statusBook});
 
   @override
   State<HistoryCustomerCard> createState() => _HistoryCustomerCardState();
@@ -15,7 +26,7 @@ class _HistoryCustomerCardState extends State<HistoryCustomerCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       child: Card(
         color: Color(0xffB1D0E0),
         child: Padding(
@@ -26,7 +37,7 @@ class _HistoryCustomerCardState extends State<HistoryCustomerCard> {
             children: [
               Center(
                   child: Text(
-                "[Rejected]",
+                "[${widget.statusBook}]",
                 style: bookingStatusTextStyle,
               )),
               Padding(
@@ -46,7 +57,7 @@ class _HistoryCustomerCardState extends State<HistoryCustomerCard> {
                     style: bookingTotalTextStyle,
                   ),
                   Text(
-                    "Simple Laundry",
+                    widget.laundry_name,
                     style: bookingEmailTextStyle,
                   ),
                 ],
@@ -55,14 +66,14 @@ class _HistoryCustomerCardState extends State<HistoryCustomerCard> {
                 height: 10,
               ),
               Text(
-                "nurulizza.safira@gmail.com",
+                widget.cust_email,
                 style: bookingEmailTextStyle,
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                "jalan banyuwangi nomor 56 blok A Waru Sidoarjo Jawa Timur Indonesia",
+                widget.cust_address,
                 style: bookingAddressTextStyle,
                 maxLines: 2,
               ),
@@ -76,7 +87,7 @@ class _HistoryCustomerCardState extends State<HistoryCustomerCard> {
                     style: bookingTotalTextStyle,
                   ),
                   Text(
-                    "RP 7000",
+                    widget.total,
                     style: bookingEmailTextStyle,
                   )
                 ],
