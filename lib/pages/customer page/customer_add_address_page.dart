@@ -203,6 +203,13 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                             .setString("address", _completeAddress.text.trim());
                         // formKey.currentState!.reset();
                       });
+                      FirebaseFirestore.instance
+                          .collection("customers")
+                          .doc(sharedPreferences!.getString("uid"))
+                          .collection("cust_address")
+                          .doc(sharedPreferences!.getString("uid"))
+                          .set(model)
+                          .then((value) async {});
                     },
                     child: Text(
                       'save the address',

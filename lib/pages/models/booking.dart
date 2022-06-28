@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 class Booking {
-  // String? id_price;
   String? id_booking;
   String? id_laundry;
   String? id_cust;
@@ -15,9 +14,7 @@ class Booking {
   int? quantity;
 
   Booking(
-      {
-      // this.id_price,
-      this.id_booking,
+      {this.id_booking,
       this.price,
       this.cust_address,
       this.cust_email,
@@ -30,7 +27,6 @@ class Booking {
       this.quantity});
 
   Booking.fromJson(Map<String, dynamic> json) {
-    // id_price = json['id_price'];
     price = json['price'];
     cust_email = json['cust_email'];
     cust_address = json['cust_address'];
@@ -46,7 +42,7 @@ class Booking {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    // data['id_price'] = id_price;
+
     data['price'] = price;
     data['cust_email'] = cust_email;
     data['cust_address'] = cust_address;

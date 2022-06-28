@@ -107,6 +107,8 @@ class _customerSignupState extends State<customerSignup> {
     await sharedPreferences!
         .setString("name", nameTextEditingController.text.trim());
     await sharedPreferences!.setString("status", "customer");
+    await sharedPreferences!
+        .setString("phone", phoneTextEditingController.text.trim());
 
     // await sharedPreferences!
     //     .setString("phone", phoneTextEditingController.text.trim());

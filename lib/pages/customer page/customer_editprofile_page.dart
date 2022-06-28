@@ -16,26 +16,24 @@ class customerEditProfilePage extends StatefulWidget {
   @override
   State<customerEditProfilePage> createState() =>
       _customerEditProfilePageState();
-  final Customers customer = Customers();
+  // final Customers customer = Customers();
   // final TextEditingController emailTextEditingController;
   // customerEditProfilePage({this.customer});
 }
 
 class _customerEditProfilePageState extends State<customerEditProfilePage> {
-  TextEditingController emailTextEditingController = TextEditingController();
+  final emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
-
-  @override
-  void initState() {
-    emailTextEditingController.text = widget.customer.cust_email!;
-    passwordTextEditingController.text = widget.customer.cust_password!;
-    nameTextEditingController.text = widget.customer.cust_name!;
-    phoneTextEditingController.text = widget.customer.cust_phone!;
-    // TODO: implement initState
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   nameTextEditingController.text = sharedPreferences!.getString("name")!;
+  //   emailTextEditingController.text = sharedPreferences!.getString("email")!;
+  //   phoneTextEditingController.text = sharedPreferences!.getString("phone")!;
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

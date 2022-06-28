@@ -20,37 +20,6 @@ class MySplashScreen extends StatefulWidget {
 class _MySplashScreenState extends State<MySplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 3), () async {
-      // if (await firebaseAuth.currentUser != null) {
-      //   currentFirebaseUser = firebaseAuth.currentUser;
-
-      //   if (sharedPreferences!.getString("status") != "admin") {
-      //     //if customer
-      //     // firebaseAuth.currentUser != null
-      //     //     ? currentFirebaseUser = firebaseAuth.currentUser
-      //     //     : null;
-      //     // print("This is customer");
-      //     Navigator.pushAndRemoveUntil(
-      //         context,
-      //         MaterialPageRoute(builder: (c) => AdminPage()),
-      //         (Route<dynamic> route) => false);
-      //   } else if (sharedPreferences!.getString("status") != "customer") {
-      //     //if tech
-      //     // firebaseAuth.currentUser != null
-      //     //     ? currentFirebaseUser = firebaseAuth.currentUser
-      //     //     : null;
-      //     // print("This is technician");
-      //     Navigator.pushAndRemoveUntil(
-      //         context,
-      //         MaterialPageRoute(builder: (c) => customerPage()),
-      //         (Route<dynamic> route) => false);
-      //   }
-      // } else {
-      //   // Fluttertoast.showToast(msg: "Invalid data.");
-      //   Navigator.pushAndRemoveUntil(
-      //       context,
-      //       MaterialPageRoute(builder: (c) => const UserLevelPage()),
-      //       (Route<dynamic> route) => false);
-      // }
       if (firebaseAuth.currentUser != null) {
         currentFirebaseUser = firebaseAuth.currentUser;
         CollectionReference<Map<String, dynamic>> custRef =
