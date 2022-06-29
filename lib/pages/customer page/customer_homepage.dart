@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/admin%20page/laundry_page.dart';
@@ -54,36 +56,41 @@ class _customerHomePageState extends State<customerHomePage> {
             style: greetTextStyle,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 30.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                laundryChoices(
-                  imageUrl: 'assets/wash.png',
-                  text: 'wash',
+        StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection("admins").snapshots(),
+            builder: (context, snapshot) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      laundryChoices(
+                        imageUrl: 'assets/wash.png',
+                        text: 'wash',
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      laundryChoices(imageUrl: 'assets/iron.png', text: 'iron'),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      laundryChoices(
+                          imageUrl: 'assets/wash&iron.png',
+                          text: 'wash & iron'),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      laundryChoices(imageUrl: 'assets/dry.png', text: 'dry'),
+                      SizedBox(
+                        width: 15,
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  width: 15,
-                ),
-                laundryChoices(imageUrl: 'assets/iron.png', text: 'iron'),
-                SizedBox(
-                  width: 15,
-                ),
-                laundryChoices(
-                    imageUrl: 'assets/wash&iron.png', text: 'wash & iron'),
-                SizedBox(
-                  width: 15,
-                ),
-                laundryChoices(imageUrl: 'assets/dry.png', text: 'dry'),
-                SizedBox(
-                  width: 15,
-                ),
-              ],
-            ),
-          ),
-        ),
+              );
+            }),
         Padding(
           padding: EdgeInsets.only(top: 45, bottom: 30, left: 30),
           child: Text(

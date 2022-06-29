@@ -160,3 +160,10 @@ TextStyle bookingTotalTextStyle = GoogleFonts.roboto(
 // booking email Text Style dark
 TextStyle bookingStatusTextStyle = GoogleFonts.roboto(
     color: Color(0xff406882), fontSize: 17, fontWeight: FontWeight.w700);
+
+TextStyle checkBoxTextStyle = GoogleFonts.roboto(
+    color: Color(0xff6998AB), fontSize: 16, fontWeight: FontWeight.w600);
+
+// laundry page Sub Heading Text Style dark
+TextStyle alertTextStyle = GoogleFonts.roboto(
+    color: Colors.red, fontSize: 15, fontWeight: FontWeight.w500);

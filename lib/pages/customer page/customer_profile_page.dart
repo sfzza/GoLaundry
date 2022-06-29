@@ -12,6 +12,8 @@ import 'package:golaundry/pages/models/customer.dart';
 import 'package:golaundry/pages/userlevel_page.dart';
 import 'package:golaundry/theme.dart';
 
+import 'checkbox.dart';
+
 class customerProfilePage extends StatelessWidget {
   const customerProfilePage({Key? key}) : super(key: key);
 

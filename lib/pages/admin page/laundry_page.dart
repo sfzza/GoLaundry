@@ -46,8 +46,8 @@ class _LaundryPageState extends State<LaundryPage> {
                   .collection("admins")
                   .doc(widget.id_laundry)
                   .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
+              builder: (context, laundrysnapshot) {
+                if (!laundrysnapshot.hasData) {
                   return circularProgress();
                 }
                 return ListView(
@@ -63,45 +63,89 @@ class _LaundryPageState extends State<LaundryPage> {
                           ),
                           color: Color(0xffB1D0E0)),
                       child: LaundryDetail(
-                        laundry_name: snapshot.data?["laundry_name"],
-                        laundry_address: snapshot.data?["laundry_address"],
-                        laundry_fare: "${snapshot.data?["laundry_fare"]}",
-                        laundry_hour: snapshot.data?["laundry_hour"],
-                        laundry_phone: snapshot.data?["laundry_phone"],
+                        laundry_name: laundrysnapshot.data?["laundry_name"],
+                        laundry_address:
+                            laundrysnapshot.data?["laundry_address"],
+                        laundry_fare:
+                            "${laundrysnapshot.data?["laundry_fare"]}",
+                        laundry_hour: laundrysnapshot.data?["laundry_hour"],
+                        laundry_phone: laundrysnapshot.data?["laundry_phone"],
                       ),
                     ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 49),
-                        child: Container(
-                          width: 267,
-                          height: 50,
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Color(0xff406882),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(9),
+                    StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance
+                            .collection("customers")
+                            .doc(sharedPreferences!.getString("uid"))
+                            .snapshots(),
+                        builder: (custcontext, custsnapshot) {
+                          if (custsnapshot.data?["fullAddress"] !=
+                              "no address") {
+                            return Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 49),
+                                child: Container(
+                                  width: 267,
+                                  height: 50,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Color(0xff406882),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(9),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AddDetailsPage(
+                                                  id_laundry: laundrysnapshot
+                                                      .data?["id_laundry"],
+                                                )),
+                                      );
+                                    },
+                                    child: Text(
+                                      'next',
+                                      style: buttonTextStyle,
+                                    ),
+                                  ),
+                                ),
                               ),
+                            );
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 49),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "Please fill your address first",
+                                  style: alertTextStyle,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                  child: Container(
+                                    width: 267,
+                                    height: 50,
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Color(0xff406882),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(9),
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text('next',
+                                          style: deadButtonTextStyle),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddDetailsPage(
-                                          id_laundry: snapshot
-                                              .data?["id_laundry"]
-                                              .toString(),
-                                        )),
-                              );
-                            },
-                            child: Text(
-                              'next',
-                              style: buttonTextStyle,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                          );
+                        }),
                   ],
                 );
               }),

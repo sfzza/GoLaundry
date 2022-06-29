@@ -2,16 +2,16 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:golaundry/pages/customer%20page/schdedule_page.dart';
 import 'package:golaundry/pages/models/booking.dart';
 import 'package:golaundry/pages/widgets/total_payment.dart';
 import '../../theme.dart';
 import '../global/global.dart';
 import '../models/pricing.dart';
-import '../widgets/details.dart';
 import '../widgets/error_dialog.dart';
 import '../widgets/progress_bar.dart';
 import 'package:intl/intl.dart';
+
+import 'customer_myorder_page.dart';
 
 class AddDetailsPage extends StatefulWidget {
   final String? id_laundry;
@@ -280,8 +280,6 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                         stream: FirebaseFirestore.instance
                             .collection("customers")
                             .doc(sharedPreferences!.getString("uid"))
-                            .collection("cust_address")
-                            .doc(sharedPreferences!.getString("uid"))
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
@@ -404,6 +402,11 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                                       "booking has been saved.",
                                                 );
                                               });
+                                          // Route newRoute = MaterialPageRoute(
+                                          //     builder: (c) =>
+                                          //         customerMyOrderPage());
+                                          // Navigator.pushReplacement(
+                                          //     context, newRoute);
                                         });
                                       },
                                       child: Text("Place Order",

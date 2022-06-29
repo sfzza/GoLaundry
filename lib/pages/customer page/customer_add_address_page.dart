@@ -11,6 +11,8 @@ import 'package:golaundry/pages/widgets/text_field.dart';
 import 'package:golaundry/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'customer_address_page.dart';
+
 class CustomerAddAddressPage extends StatefulWidget {
   @override
   State<CustomerAddAddressPage> createState() => _CustomerAddAddressPageState();
@@ -193,6 +195,7 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                                 message: "new address has been saved.",
                               );
                             });
+                        // Navigator.pop(context);
                         sharedPreferences =
                             await SharedPreferences.getInstance();
                         await sharedPreferences!
