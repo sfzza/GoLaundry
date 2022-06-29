@@ -22,9 +22,11 @@ class _LaundryListPageState extends State<LaundryListPage> {
     double? lonCal = sharedPreferences!.getDouble("lat");
     var p = 0.017453292519943295;
     var c = cos;
+    var R = 6371.0;
     var a = 0.5 -
         c((lat - latCal) * p) / 2 +
         c(latCal! * p) * c(lat * p) * (1 - c((lon - lonCal) * p)) / 2;
+    // return 2 * R;
     return 12742 * asin(sqrt(a));
   }
 
@@ -53,10 +55,10 @@ class _LaundryListPageState extends State<LaundryListPage> {
                     );
                   },
                   child: LaundryList(
-                    laundry_name: data["laundry_name"],
-                    laundry_hour: data["laundry_hour"],
-                    distance: "",
-                  ),
+                      laundry_name: data["laundry_name"],
+                      laundry_hour: data["laundry_hour"],
+                      distance:
+                          calculateDistance(data["lat"], data["lng"]).toInt()),
                 );
               }).toList(),
             );

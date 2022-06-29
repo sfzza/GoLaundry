@@ -6,18 +6,21 @@ import 'package:golaundry/chat/chat_screen.dart';
 import 'package:golaundry/pages/customer%20page/add_details_page.dart';
 import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/models/laundries.dart';
+import 'package:golaundry/pages/views/2/chat_page.dart';
 import 'package:golaundry/pages/widgets/laundry_detail.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 
 import '../models/pricing.dart';
+import '../views/chat_page.dart';
 
 class LaundryPage extends StatefulWidget {
   @override
   State<LaundryPage> createState() => _LaundryPageState();
+  final Laundries? laundry;
   final String id_laundry;
   final Pricing? priceMap;
-  LaundryPage({required this.id_laundry, this.priceMap});
+  LaundryPage({required this.id_laundry, this.priceMap, this.laundry});
 }
 
 class _LaundryPageState extends State<LaundryPage> {
@@ -85,8 +88,9 @@ class _LaundryPageState extends State<LaundryPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => AddDetailsPage(
-                                          id_laundry:
-                                              snapshot.data?["id_laundry"],
+                                          id_laundry: snapshot
+                                              .data?["id_laundry"]
+                                              .toString(),
                                         )),
                               );
                             },
@@ -135,9 +139,13 @@ class _LaundryPageState extends State<LaundryPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ChatScreen(
+                            builder: (context) => ChatPage2(
                                   id_laundry: snapshot.data?["id_laundry"],
-                                )),
+                                )
+                            // ChatScreen(
+                            //       id_laundry: snapshot.data?["id_laundry"],
+                            // )
+                            ),
                       );
                     },
                     minWidth: 60,

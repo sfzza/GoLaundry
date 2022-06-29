@@ -1,4 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
+class UserField {
+  static final String lastMessageTime = 'lastMessageTime';
+}
 
 class Customers {
   String? id_cust;
@@ -15,6 +18,13 @@ class Customers {
     this.cust_password,
     this.cust_phone,
   });
+  Customers.fromSnapshot(snapshot)
+      : id_cust = snapshot.data()['id_cust'],
+        cust_email = snapshot.data()['cust_email'],
+        cust_name = snapshot.data()['cust_name'],
+        cust_password = snapshot.data()['cust_password'],
+        cust_phone = snapshot.data()['cust_phone'],
+        status = snapshot.data()['status'];
   Customers.fromJson(Map<String, dynamic> json) {
     id_cust = json['id_cust'];
     cust_email = json['cust_email'];
