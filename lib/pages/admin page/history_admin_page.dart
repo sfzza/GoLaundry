@@ -16,7 +16,7 @@ class _historyAdminPageState extends State<historyAdminPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff6998AB),
+      backgroundColor: const Color(0xff6998AB),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("booking")
@@ -26,13 +26,18 @@ class _historyAdminPageState extends State<historyAdminPage> {
                   whereIn: ["accepted", "rejected"]).snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Center(
-                child: Text(
-                  'currently you dont have any order on progress',
-                  style: noHistoryTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-              );
+              return const Center(
+                  child:
+                      // ignore: unnecessary_const
+                      const SizedBox(
+                height: 2,
+              )
+                  // Text(
+                  //   'currently you dont have any order on progress',
+                  //   style: noHistoryTextStyle,
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  );
             }
             return ListView(
                 children: snapshot.data!.docs.map((docs) {

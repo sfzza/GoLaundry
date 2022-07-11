@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/global/global.dart';
@@ -26,12 +28,15 @@ class _OnprogressCustomerPageState extends State<OnprogressCustomerPage> {
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Center(
-                child: Text(
-                  'currently you dont have any order on progress',
-                  style: noHistoryTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-              );
+                  child: SizedBox(
+                height: 2,
+              )
+                  // Text(
+                  //   'currently you dont have any order on progress',
+                  //   style: noHistoryTextStyle,
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  );
             }
             return ListView(
               children: snapshot.data!.docs.map((docs) {

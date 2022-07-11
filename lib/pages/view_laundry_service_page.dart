@@ -1,12 +1,17 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:golaundry/pages/admin%20page/laundry_list_page.dart';
+import 'package:golaundry/pages/admin%20page/laundry_list_page_wash.dart';
 import 'package:golaundry/theme.dart';
 
-class viewLaundryServicePage extends StatefulWidget {
-  const viewLaundryServicePage({Key? key}) : super(key: key);
+import 'admin page/laundry_list_page_dry.dart';
+import 'admin page/laundry_list_page_iron.dart';
+import 'admin page/laundry_list_page_washniron.dart';
 
+class viewLaundryServicePage extends StatefulWidget {
+  // const viewLaundryServicePage({Key? key}) : super(key: key);
+  int selectedPage;
+  viewLaundryServicePage({required this.selectedPage});
   @override
   State<viewLaundryServicePage> createState() => _viewLaundryServicePageState();
 }
@@ -47,6 +52,7 @@ class _viewLaundryServicePageState extends State<viewLaundryServicePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
+        initialIndex: widget.selectedPage,
         length: 4,
         child: Scaffold(
           backgroundColor: Color(0xffB1D0E0),
@@ -75,10 +81,10 @@ class _viewLaundryServicePageState extends State<viewLaundryServicePage> {
           ),
           body: TabBarView(
             children: [
-              LaundryListPage(),
-              LaundryListPage(),
-              LaundryListPage(),
-              LaundryListPage(),
+              LaundryListPageWash(),
+              LaundryListPageIron(),
+              LaundryListPageWashIron(),
+              LaundryListPageDry(),
             ],
           ),
         ),

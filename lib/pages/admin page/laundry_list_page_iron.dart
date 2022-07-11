@@ -9,14 +9,14 @@ import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/widgets/laundry_list.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 
-class LaundryListPage extends StatefulWidget {
-  const LaundryListPage({Key? key}) : super(key: key);
+class LaundryListPageIron extends StatefulWidget {
+  const LaundryListPageIron({Key? key}) : super(key: key);
 
   @override
-  State<LaundryListPage> createState() => _LaundryListPageState();
+  State<LaundryListPageIron> createState() => _LaundryListPageIronState();
 }
 
-class _LaundryListPageState extends State<LaundryListPage> {
+class _LaundryListPageIronState extends State<LaundryListPageIron> {
   double calculateDistance(lat, lon) {
     double? latCal = sharedPreferences!.getDouble("lng");
     double? lonCal = sharedPreferences!.getDouble("lat");
@@ -35,7 +35,10 @@ class _LaundryListPageState extends State<LaundryListPage> {
     return Container(
       color: Color(0xff6998AB),
       child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection("admins").snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection("admins")
+              .where("tags", arrayContains: "iron")
+              .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return circularProgress();

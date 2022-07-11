@@ -98,9 +98,9 @@ class _UserLevelPageState extends State<UserLevelPage> {
           child: Column(
             children: [
               Image.asset(
-                'assets/Logo.png',
-                width: 231,
-                height: 55,
+                'assets/golaundry-02.png',
+                width: 250,
+                height: 60,
               ),
               SizedBox(
                 height: 190,

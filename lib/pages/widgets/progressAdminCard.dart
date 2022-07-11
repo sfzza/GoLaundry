@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/models/status_booking.dart';
@@ -36,9 +38,12 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
               return circularProgress();
             }
             return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               color: Color(0xffB1D0E0),
               child: Padding(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -71,16 +76,58 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(
+                            top: 15,
+                          ),
                           child: Container(
-                            width: 48,
-                            height: 21,
+                            width: 112,
+                            height: 35,
                             child: TextButton(
                               style: TextButton.styleFrom(
-                                  backgroundColor: Colors.green,
+                                  backgroundColor: Color(0xff406882),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6))),
+                              onPressed: () {
+                                final statusBook = Status(
+                                  statusBook: "rejected",
+                                ).toJson();
+
+                                FirebaseFirestore.instance
+                                    .collection("booking")
+                                    .doc(widget.id_booking)
+                                    .update(statusBook)
+                                    .then((value) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (c) {
+                                        return ErrorDialog(
+                                          message: "Status has been changed",
+                                        );
+                                      });
+                                });
+                                // print(widget.id_booking);
+                                // print(statusBook);
+                                // print(context);
+                              },
+                              child: Text(
+                                "Reject",
+                                style: chatTitleTextStyle,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 48),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Container(
+                            width: 112,
+                            height: 35,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: Color(0xff6998AB),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6))),
                               onPressed: () {
@@ -105,45 +152,9 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                                 // print(statusBook);
                                 // print(context);
                               },
-                              child: Text(""),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 5),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                            width: 48,
-                            height: 21,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: Colors.red,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6))),
-                              onPressed: () {
-                                final statusBook = Status(
-                                  statusBook: "rejected",
-                                ).toJson();
-
-                                FirebaseFirestore.instance
-                                    .collection("booking")
-                                    .doc(widget.id_booking)
-                                    .update(statusBook)
-                                    .then((value) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (c) {
-                                        return ErrorDialog(
-                                          message: "Status has been changed",
-                                        );
-                                      });
-                                });
-                                print(widget.id_booking);
-                                print(statusBook);
-                                print(context);
-                              },
                               child: Text(
-                                "",
+                                "Accept",
+                                style: chatTitleTextStyle,
                               ),
                             ),
                           ),

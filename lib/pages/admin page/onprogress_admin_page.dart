@@ -31,12 +31,15 @@ class _OnprogressPageState extends State<OnprogressAdminPage> {
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Center(
-                child: Text(
-                  'currently you dont have any order on progress',
-                  style: noHistoryTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-              );
+                  child: SizedBox(
+                height: 2,
+              )
+                  // Text(
+                  //   'currently you dont have any order on progress',
+                  //   style: noHistoryTextStyle,
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  );
             }
 
             return ListView(

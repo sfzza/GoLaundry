@@ -23,8 +23,8 @@ class _AdminPageState extends State<AdminPage> {
     AdminRequestPage(),
     ChatsPage(),
     // AdminNotificationPage(),
-    MyHomePage()
-    // AdminProfilePage()
+    // MyHomePage()
+    AdminProfilePage()
   ];
   @override
   Widget build(BuildContext context) {

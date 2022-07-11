@@ -53,9 +53,9 @@ class _MySplashScreenState extends State<MySplashScreen> {
       backgroundColor: Color(0xffB1D0E0),
       body: Center(
         child: Image.asset(
-          'assets/Logo.png',
-          width: 271,
-          height: 95,
+          'assets/golaundry-02.png',
+          width: 270,
+          height: 80,
         ),
       ),
     );
