@@ -100,7 +100,7 @@ class FirebaseApi {
           .collection('Chat')
           .doc(id_laundry + userId)
           .collection('Messages')
-          // .where('messageTo', isEqualTo: techId)
+          // .where('messageTo', isEqualTo: id_laundry)
           .orderBy('createdAt', descending: true)
           .snapshots()
           .transform(Utils.transformer(Message.fromJson));

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/admin%20page/laundry_page.dart';
 
+import '../../theme.dart';
 import '../customer page/add_details_page.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
@@ -16,6 +17,7 @@ class ProfileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(color: Color(0xff6998AB)),
         height: 80,
         padding: EdgeInsets.all(16).copyWith(left: 0),
         child: Column(
@@ -23,15 +25,13 @@ class ProfileHeaderWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BackButton(color: Colors.white),
+                BackButton(
+                  color: Color(0xff1A374D),
+                ),
                 Expanded(
                   child: Text(
                     name,
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: titlePageTextStyle,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -41,8 +41,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                     // buildIcon(Icons.call),
                     // SizedBox(width: 12),
                     // buildIcon(Icons.videocam),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.bookmark_add),
+                    ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -51,16 +50,16 @@ class ProfileHeaderWidget extends StatelessWidget {
                                   AddDetailsPage(id_laundry: id_laundry),
                             ));
                       },
-                      label: const Text("Book"),
+                      child: const Text("Book"),
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                            const Color(0xFFA74385),
+                            const Color(0xff2C88D9),
                           ),
-                          shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(color: Color(0xFFA74385))))),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ))),
                     ),
                   ],
                 ),

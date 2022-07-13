@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../controllers/firebase_api.dart';
+import '../../theme.dart';
 import '../global/global.dart';
 
 class NewMessageWidget extends StatefulWidget {
@@ -32,20 +33,29 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
 
   @override
   Widget build(BuildContext context) => Container(
-        color: Colors.white,
+        color: Color(0xff6998AB),
         padding: EdgeInsets.all(8),
         child: Row(
           children: <Widget>[
             Expanded(
               child: TextField(
+                style: textFieldTextStyle,
+                autocorrect: false,
                 controller: _controller,
                 textCapitalization: TextCapitalization.sentences,
-                autocorrect: true,
-                enableSuggestions: true,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.grey[100],
-                  labelText: 'Type your message',
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide:
+                          BorderSide(color: Color(0xff406882), width: 3)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide:
+                          BorderSide(color: Color(0xff1A374D), width: 3)),
+                  fillColor: Color(0xffB1D0E0),
+                  hintText: 'Type your message',
+                  hintStyle: hintTextStyle,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(width: 0),
                     gapPadding: 10,
@@ -57,16 +67,20 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                 }),
               ),
             ),
-            SizedBox(width: 20),
+            SizedBox(width: 10),
             GestureDetector(
               onTap: message.trim().isEmpty ? null : sendMessage,
               child: Container(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Color(0xFF7B4067),
+                  color: Color(0xffB1D0E0),
                 ),
-                child: Icon(Icons.send, color: Colors.white),
+                child: Icon(
+                  Icons.send,
+                  color: Color(0xff2C88D9),
+                  size: 28,
+                ),
               ),
             ),
           ],

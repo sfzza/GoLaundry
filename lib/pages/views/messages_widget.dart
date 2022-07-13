@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/views/message_widget.dart';
+import 'package:golaundry/theme.dart';
 
 import '../../controllers/firebase_api.dart';
 import '../models/message.dart';
@@ -28,16 +29,16 @@ class MessagesWidget extends StatelessWidget {
                 return buildText('Something Went Wrong Try later');
               } else {
                 final messages = snapshot.data;
-
-                return messages!.isEmpty
-                    ? buildText('Say Hi..')
+                print(messages!.length);
+                return messages.isEmpty
+                    ? buildText('Say hi...')
                     : ListView.builder(
                         physics: BouncingScrollPhysics(),
                         reverse: true,
                         itemCount: messages.length,
                         itemBuilder: (context, index) {
                           final message = messages[index];
-
+                          print(message.userId);
                           return MessageWidget(
                             message: message,
                             isMe: message.userId == currentFirebaseUser!.uid,
@@ -52,7 +53,7 @@ class MessagesWidget extends StatelessWidget {
   Widget buildText(String text) => Center(
         child: Text(
           text,
-          style: TextStyle(fontSize: 24),
+          style: noHistoryTextStyle,
         ),
       );
 }

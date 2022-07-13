@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:golaundry/theme.dart';
 
 import '../models/message.dart';
 
@@ -13,27 +16,27 @@ class MessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = Radius.circular(12);
+    final radius = Radius.circular(15);
     final borderRadius = BorderRadius.all(radius);
 
     return Row(
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: <Widget>[
-        if (!isMe)
-          Container(
-            padding: EdgeInsets.all(16),
-            margin: EdgeInsets.all(16),
-            constraints: BoxConstraints(maxWidth: 140),
-            decoration: BoxDecoration(
-              color: isMe ? Colors.grey[100] : Color(0xFFBF84B1),
-              borderRadius: isMe
-                  ? borderRadius
-                      .subtract(BorderRadius.only(bottomRight: radius))
-                  : borderRadius
-                      .subtract(BorderRadius.only(bottomLeft: radius)),
-            ),
-            child: buildMessage(),
+        Container(
+          padding: EdgeInsets.symmetric(
+            vertical: 15,
+            horizontal: 20,
           ),
+          margin: EdgeInsets.only(bottom: 16, right: 16, left: 16),
+          constraints: BoxConstraints(maxWidth: 140),
+          decoration: BoxDecoration(
+            color: isMe ? Color(0xffB1D0E0) : Color(0xFF406882),
+            borderRadius: isMe
+                ? borderRadius.subtract(BorderRadius.only(bottomRight: radius))
+                : borderRadius.subtract(BorderRadius.only(bottomLeft: radius)),
+          ),
+          child: buildMessage(),
+        ),
       ],
     );
   }
@@ -44,7 +47,8 @@ class MessageWidget extends StatelessWidget {
         children: <Widget>[
           Text(
             message.message,
-            style: TextStyle(color: isMe ? Colors.black : Colors.white),
+            style:
+                TextStyle(color: isMe ? Color(0xff1A374D) : Color(0xffB1D0E0)),
             textAlign: isMe ? TextAlign.end : TextAlign.start,
           ),
         ],

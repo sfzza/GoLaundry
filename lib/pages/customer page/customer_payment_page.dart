@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:golaundry/theme.dart';
 
@@ -94,7 +96,11 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
             SizedBox(
               height: 21,
             ),
-            SelectedPayment(0, 'Cash of delivery'),
+            SelectedPayment(0, 'Cash of Delivery'),
+            SizedBox(
+              height: 12,
+            ),
+            SelectedPayment(1, 'Credit Card'),
             IconButton(
                 onPressed: () {},
                 icon: Icon(
