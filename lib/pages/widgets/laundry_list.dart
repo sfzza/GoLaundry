@@ -65,10 +65,10 @@ class _LaundryListState extends State<LaundryList> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
-              child: Text(widget.distance.toString()),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 20, left: 20),
+            //   child: Text(widget.distance.toString()),
+            // ),
           ],
         ),
         height: 90,

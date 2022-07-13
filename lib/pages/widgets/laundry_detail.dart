@@ -56,7 +56,7 @@ class LaundryDetail extends StatelessWidget {
             height: 12,
           ),
           Text(
-            "Fare per 1 KM: $laundry_fare rupiah",
+            "Delivery Fare: $laundry_fare rupiah",
             style: laundryPageSubHeadingFieldTextStyle,
           ),
           SizedBox(height: 70),
@@ -66,22 +66,28 @@ class LaundryDetail extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Stack(
-                    children: [
-                      laundryBox(
-                        imageUrl: 'assets/wash.png',
-                        text: 'wash',
-                      ),
-                      Opacity(
-                        opacity: 0.6,
-                        child: Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(color: Colors.black),
-                        ),
-                      ),
-                    ],
-                  ),
+                  StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection("admins")
+                          .where("tags", whereNotIn: ["wash"]).snapshots(),
+                      builder: (context, snapshot) {
+                        return Stack(
+                          children: [
+                            laundryBox(
+                              imageUrl: 'assets/wash.png',
+                              text: 'wash',
+                            ),
+                            Opacity(
+                              opacity: 0.0,
+                              child: Container(
+                                width: 90,
+                                height: 90,
+                                decoration: BoxDecoration(color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        );
+                      }),
                   SizedBox(
                     width: 15,
                   ),
