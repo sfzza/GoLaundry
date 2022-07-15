@@ -79,7 +79,8 @@ class _LaundryPageState extends State<LaundryPage> {
                             .snapshots(),
                         builder: (custcontext, custsnapshot) {
                           if (custsnapshot.data?["fullAddress"] !=
-                              "no address") {
+                                  "no address" &&
+                              custsnapshot.data?["payment"] != "no payment") {
                             return Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 49),
@@ -114,15 +115,15 @@ class _LaundryPageState extends State<LaundryPage> {
                             );
                           }
                           return Padding(
-                            padding: const EdgeInsets.only(top: 49),
+                            padding: const EdgeInsets.only(top: 38),
                             child: Column(
                               children: [
                                 Text(
-                                  "Please fill your address first",
+                                  "Please fill your address and payment method first",
                                   style: alertTextStyle,
                                 ),
                                 SizedBox(
-                                  height: 5,
+                                  height: 11,
                                 ),
                                 Center(
                                   child: Container(
@@ -185,11 +186,7 @@ class _LaundryPageState extends State<LaundryPage> {
                         MaterialPageRoute(
                             builder: (context) => ChatPage2(
                                   id_laundry: snapshot.data?["id_laundry"],
-                                )
-                            // ChatScreen(
-                            //       id_laundry: snapshot.data?["id_laundry"],
-                            // )
-                            ),
+                                )),
                       );
                     },
                     minWidth: 60,

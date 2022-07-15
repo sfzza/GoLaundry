@@ -119,6 +119,22 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                 ListTile(
                   contentPadding: EdgeInsets.only(left: 20),
                   title: Text(
+                    'Pricing',
+                    style: profilePageTextStyle,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PricingPage()),
+                    );
+                  },
+                ),
+                Divider(
+                  color: Color(0xff6998AB),
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.only(left: 20),
+                  title: Text(
                     'Logout',
                     style: profilePageTextStyle,
                   ),
@@ -132,7 +148,7 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                 ),
                 Divider(
                   color: Color(0xff6998AB),
-                )
+                ),
               ],
             );
           }),

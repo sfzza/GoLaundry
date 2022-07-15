@@ -104,7 +104,7 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                                       context: context,
                                       builder: (c) {
                                         return ErrorDialog(
-                                          message: "Status has been changed",
+                                          message: "Booking has been rejected",
                                         );
                                       });
                                 });
@@ -144,7 +144,7 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                                       context: context,
                                       builder: (c) {
                                         return ErrorDialog(
-                                          message: "Status has been changed",
+                                          message: "Booking has been accepted",
                                         );
                                       });
                                 });

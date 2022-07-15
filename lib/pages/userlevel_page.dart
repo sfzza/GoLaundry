@@ -94,16 +94,16 @@ class _UserLevelPageState extends State<UserLevelPage> {
       backgroundColor: Color(0xffB1D0E0),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(top: 80.0),
+          padding: const EdgeInsets.only(top: 90.0),
           child: Column(
             children: [
               Image.asset(
                 'assets/golaundry-02.png',
-                width: 250,
-                height: 60,
+                width: 300,
+                height: 110,
               ),
               SizedBox(
-                height: 190,
+                height: 160,
               ),
               Text(
                 'Which one are you?',

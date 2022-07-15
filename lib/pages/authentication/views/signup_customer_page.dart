@@ -100,6 +100,7 @@ class _customerSignupState extends State<customerSignup> {
       "cust_password": passwordTextEditingController.text.trim(),
       "status": "customer",
       "fullAddress": "no address",
+      "payment": "no payment",
     });
 
     sharedPreferences = await SharedPreferences.getInstance();

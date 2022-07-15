@@ -317,32 +317,44 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                             ),
                           );
                         }),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(color: Color(0xffB1D0E0)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Text(
-                                "Payment",
-                                style: detailTitleFieldTextStyle,
+                    StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance
+                            .collection("customers")
+                            .doc(sharedPreferences!.getString("uid"))
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return circularProgress();
+                          }
+                          return Padding(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              decoration:
+                                  BoxDecoration(color: Color(0xffB1D0E0)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      "Payment",
+                                      style: detailTitleFieldTextStyle,
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(right: 20),
+                                      child: Text(
+                                        snapshot.data?["payment"],
+                                        style: detailSubtitleFieldTextStyle,
+                                      ))
+                                ],
                               ),
                             ),
-                            Padding(
-                                padding: const EdgeInsets.only(right: 20),
-                                child: Text(
-                                  "cash of delivery",
-                                  style: detailSubtitleFieldTextStyle,
-                                ))
-                          ],
-                        ),
-                      ),
-                    ),
+                          );
+                        }),
                     StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         stream: FirebaseFirestore.instance
                             .collection("admins")
@@ -370,6 +382,8 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                             .millisecondsSinceEpoch
                                             .toString();
                                         final booking = Booking(
+                                                payment: sharedPreferences!
+                                                    .getString("payment"),
                                                 id_cust: sharedPreferences!
                                                     .getString("uid"),
                                                 id_laundry: widget.id_laundry,

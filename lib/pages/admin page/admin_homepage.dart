@@ -20,7 +20,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
           child: Padding(
             padding: EdgeInsets.only(top: 80, bottom: 30),
             child: Image.asset(
-              'assets/Logo.png',
+              'assets/golaundry-02.png',
               width: 231,
               height: 55,
             ),
