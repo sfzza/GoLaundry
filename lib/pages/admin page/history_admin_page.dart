@@ -1,8 +1,8 @@
+// ignore_for_file: camel_case_types
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/widgets/history_admin.dart';
-
-import '../../theme.dart';
 import '../global/global.dart';
 
 class historyAdminPage extends StatefulWidget {

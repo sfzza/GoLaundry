@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables, sized_box_for_whitespace
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:golaundry/chat/chat_screen.dart';
 import 'package:golaundry/pages/customer%20page/add_details_page.dart';
 import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/models/laundries.dart';
@@ -12,7 +11,6 @@ import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 
 import '../models/pricing.dart';
-import '../views/chat_page.dart';
 
 class LaundryPage extends StatefulWidget {
   @override
@@ -50,7 +48,7 @@ class _LaundryPageState extends State<LaundryPage> {
                 if (!laundrysnapshot.hasData) {
                   return circularProgress();
                 }
-                return ListView(
+                return Column(
                   children: [
                     SizedBox(
                       height: 266,
@@ -85,6 +83,16 @@ class _LaundryPageState extends State<LaundryPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 49),
                                 child: Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black26,
+                                          offset: Offset(1.5, 1.5),
+                                          blurRadius: 2)
+                                    ],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(9)),
+                                  ),
                                   width: 267,
                                   height: 50,
                                   child: TextButton(

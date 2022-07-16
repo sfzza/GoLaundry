@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/authentication/views/customer_verification.dart.dart';
 import 'package:golaundry/theme.dart';
@@ -18,12 +20,22 @@ class _UserLevelPageState extends State<UserLevelPage> {
       return InkWell(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => adminVerificationPage()),
+          MaterialPageRoute(
+              builder: (context) => adminVerificationPage(
+                    selectedPage: 0,
+                  )),
         ),
         child: Container(
           width: 149,
           height: 149,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(1, 2),
+                blurRadius: 2.0,
+              )
+            ],
             color: Color(0xff6998AB),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(width: 2, color: Color(0xff1A374D)),
@@ -56,12 +68,22 @@ class _UserLevelPageState extends State<UserLevelPage> {
       return InkWell(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => customerVerificationPage()),
+          MaterialPageRoute(
+              builder: (context) => customerVerificationPage(
+                    selectedPage: 0,
+                  )),
         ),
         child: Container(
           width: 149,
           height: 149,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(1, 2),
+                blurRadius: 2.0,
+              )
+            ],
             color: Color(0xff6998AB),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(width: 2, color: Color(0xff1A374D)),

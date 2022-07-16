@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors, curly_braces_in_flow_control_structures
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -127,6 +127,12 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                       height: 35,
                                       width: 100,
                                       decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black26,
+                                              offset: Offset(1.2, 1.2),
+                                              blurRadius: 1.5)
+                                        ],
                                         color: Color(0xff406882),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
@@ -207,6 +213,16 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(1.2, 1.2),
+                                        blurRadius: 1.5)
+                                  ],
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(6)),
+                                ),
                                 width: 100,
                                 height: 35,
                                 child: TextButton(
@@ -299,7 +315,7 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      "Address",
+                                      "Pickup Address",
                                       style: detailTitleFieldTextStyle,
                                     ),
                                   ),
@@ -317,6 +333,35 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                             ),
                           );
                         }),
+                    Padding(
+                      padding: EdgeInsets.only(top: 2),
+                      child: Container(
+                        height: 100,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(color: Color(0xffB1D0E0)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                "Delivery Address",
+                                style: detailTitleFieldTextStyle,
+                              ),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Container(
+                                  width: 150,
+                                  child: Text(
+                                    "no address",
+                                    style: detailSubtitleFieldTextStyle,
+                                  ),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ),
                     StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         stream: FirebaseFirestore.instance
                             .collection("customers")
@@ -365,8 +410,18 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                             return circularProgress();
                           }
                           return Padding(
-                              padding: const EdgeInsets.only(top: 90),
+                              padding: const EdgeInsets.only(top: 35),
                               child: Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black26,
+                                          offset: Offset(1.5, 1.5),
+                                          blurRadius: 2)
+                                    ],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(9)),
+                                  ),
                                   width: 267,
                                   height: 50,
                                   child: TextButton(
@@ -416,11 +471,6 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                                       "booking has been saved.",
                                                 );
                                               });
-                                          // Route newRoute = MaterialPageRoute(
-                                          //     builder: (c) =>
-                                          //         customerMyOrderPage());
-                                          // Navigator.pushReplacement(
-                                          //     context, newRoute);
                                         });
                                       },
                                       child: Text("Place Order",

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'dart:async';
 // import 'dart:io';
@@ -625,6 +625,16 @@ class _adminSignupState extends State<adminSignup> {
             child: Padding(
               padding: const EdgeInsets.only(top: 49),
               child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(1, 2),
+                      blurRadius: 2.0,
+                    )
+                  ],
+                  borderRadius: BorderRadius.all(Radius.circular(9)),
+                ),
                 width: 267,
                 height: 50,
                 child: TextButton(
@@ -645,8 +655,28 @@ class _adminSignupState extends State<adminSignup> {
               ),
             ),
           ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already have an account?",
+                  style: thinTextStyle,
+                ),
+                TextButton(
+                  onPressed: () {
+                    DefaultTabController.of(context)!.animateTo(1);
+                  },
+                  child: Text(
+                    "Log in",
+                    style: thinButtonTextStyle,
+                  ),
+                ),
+              ],
+            ),
+          ),
           SizedBox(
-            height: 50,
+            height: 80,
           )
         ],
       ),

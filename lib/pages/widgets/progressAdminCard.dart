@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +83,12 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                             top: 15,
                           ),
                           child: Container(
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 1.5)
+                            ], borderRadius: BorderRadius.circular(6)),
                             width: 112,
                             height: 35,
                             child: TextButton(
@@ -123,6 +129,12 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15),
                           child: Container(
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 1.5)
+                            ], borderRadius: BorderRadius.circular(6)),
                             width: 112,
                             height: 35,
                             child: TextButton(

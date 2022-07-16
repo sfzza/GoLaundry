@@ -157,7 +157,7 @@ class _customerHomePageState extends State<customerHomePage> {
                 );
               }),
           Padding(
-            padding: EdgeInsets.only(top: 45, bottom: 30, left: 30),
+            padding: EdgeInsets.only(top: 55, bottom: 20, left: 30),
             child: Text(
               'Quick picks',
               style: homeTextStyle,

@@ -51,12 +51,60 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.data?["payment"] == "Cash of Delivery") {
-                return Container(
+                return Card(
+                  child: Container(
+                    height: 129,
+                    width: 380,
+                    decoration: BoxDecoration(
+                      color: Color(0xffB1D0E0),
+                      border: Border.all(width: 2, color: Color(0xff1A374D)),
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 18, top: 18, right: 18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            cash,
+                            style: paymentTextStyle,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          SizedBox(
+                            height: 38,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.check,
+                                color: Color(0xff1A374D),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'your current payment',
+                                style: addressStatusTextStyle,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return Card(
+                child: Container(
                   height: 129,
                   width: 380,
                   decoration: BoxDecoration(
                     color: Color(0xffB1D0E0),
-                    border: Border.all(width: 2, color: Color(0xff1A374D)),
+                    border: Border.all(
+                      width: 2,
+                      color: Color(0xffB1D0E0),
+                    ),
                   ),
                   child: Padding(
                     padding:
@@ -66,59 +114,16 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
                       children: [
                         Text(
                           cash,
-                          style: addressTextStyle,
+                          style: paymentTextStyle,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ),
                         SizedBox(
                           height: 38,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              color: Color(0xff1A374D),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'your current payment',
-                              style: addressStatusTextStyle,
-                            ),
-                          ],
-                        )
+                        SizedBox()
                       ],
                     ),
-                  ),
-                );
-              }
-              return Container(
-                height: 129,
-                width: 380,
-                decoration: BoxDecoration(
-                  color: Color(0xffB1D0E0),
-                  border: Border.all(
-                    width: 2,
-                    color: Color(0xff6998AB),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, top: 18, right: 18),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        cash,
-                        style: addressTextStyle,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      SizedBox(
-                        height: 38,
-                      ),
-                      SizedBox()
-                    ],
                   ),
                 ),
               );
@@ -157,12 +162,60 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.data?["payment"] == "Credit Card") {
-                return Container(
+                return Card(
+                  child: Container(
+                    height: 129,
+                    width: 380,
+                    decoration: BoxDecoration(
+                      color: Color(0xffB1D0E0),
+                      border: Border.all(width: 2, color: Color(0xff1A374D)),
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 18, top: 18, right: 18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            credit,
+                            style: paymentTextStyle,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          SizedBox(
+                            height: 38,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.check,
+                                color: Color(0xff1A374D),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'your current payment',
+                                style: addressStatusTextStyle,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return Card(
+                child: Container(
                   height: 129,
                   width: 380,
                   decoration: BoxDecoration(
                     color: Color(0xffB1D0E0),
-                    border: Border.all(width: 2, color: Color(0xff1A374D)),
+                    border: Border.all(
+                      width: 2,
+                      color: Color(0xffB1D0E0),
+                    ),
                   ),
                   child: Padding(
                     padding:
@@ -172,59 +225,16 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
                       children: [
                         Text(
                           credit,
-                          style: addressTextStyle,
+                          style: paymentTextStyle,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ),
                         SizedBox(
                           height: 38,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              color: Color(0xff1A374D),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'your current payment',
-                              style: addressStatusTextStyle,
-                            ),
-                          ],
-                        )
+                        SizedBox()
                       ],
                     ),
-                  ),
-                );
-              }
-              return Container(
-                height: 129,
-                width: 380,
-                decoration: BoxDecoration(
-                  color: Color(0xffB1D0E0),
-                  border: Border.all(
-                    width: 2,
-                    color: Color(0xff6998AB),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, top: 18, right: 18),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        credit,
-                        style: addressTextStyle,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      SizedBox(
-                        height: 38,
-                      ),
-                      SizedBox()
-                    ],
                   ),
                 ),
               );
@@ -257,20 +267,13 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
         child: Column(
           children: [
             SizedBox(
-              height: 21,
+              height: 20,
             ),
             Cash(0, 'Cash of Delivery'),
             SizedBox(
-              height: 12,
+              height: 10,
             ),
             Credit(1, 'Credit Card'),
-            // IconButton(
-            //     onPressed: () {},
-            //     icon: Icon(
-            //       Icons.add_circle_rounded,
-            //       size: 40,
-            //       color: Color(0xffB1D0E0),
-            //     ))
           ],
         ),
       ),

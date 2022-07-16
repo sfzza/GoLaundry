@@ -73,6 +73,13 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
               child: Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(1, 2),
+                      blurRadius: 2.0,
+                    )
+                  ],
                   shape: BoxShape.circle,
                   color: Color(0xffB1D0E0),
                 ),

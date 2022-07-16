@@ -1,12 +1,9 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:golaundry/pages/models/status_booking.dart';
 import 'package:golaundry/pages/widgets/progressAdminCard.dart';
-import 'package:golaundry/theme.dart';
 import '../global/global.dart';
-import '../widgets/error_dialog.dart';
 
 class OnprogressAdminPage extends StatefulWidget {
   // const OnprogressAdminPage({Key? key, this.id_booking}) : super(key: key);

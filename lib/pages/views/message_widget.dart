@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:golaundry/theme.dart';
@@ -30,6 +30,13 @@ class MessageWidget extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 16, right: 16, left: 16),
           constraints: BoxConstraints(maxWidth: 140),
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0.8, 1.8),
+                blurRadius: 2.0,
+              )
+            ],
             color: isMe ? Color(0xffB1D0E0) : Color(0xFF406882),
             borderRadius: isMe
                 ? borderRadius.subtract(BorderRadius.only(bottomRight: radius))

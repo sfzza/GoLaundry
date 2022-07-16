@@ -31,7 +31,7 @@ TextStyle thinTextStyle = GoogleFonts.roboto(
 
 // thin button Text Style
 TextStyle thinButtonTextStyle = GoogleFonts.roboto(
-    color: Color(0xff1A374D), fontSize: 16, fontWeight: FontWeight.w400);
+    color: Color(0xff406882), fontSize: 16, fontWeight: FontWeight.w500);
 
 // name Text Style
 TextStyle nameTextStyle = GoogleFonts.roboto(
@@ -88,6 +88,10 @@ TextStyle chatSubtitleTextStyle = GoogleFonts.roboto(
 // address Text Style
 TextStyle addressTextStyle = GoogleFonts.roboto(
     color: Color(0xff406882), fontSize: 15, fontWeight: FontWeight.w700);
+
+// payment Text Style
+TextStyle paymentTextStyle = GoogleFonts.roboto(
+    color: Color(0xff406882), fontSize: 20, fontWeight: FontWeight.w700);
 
 // address status Text Style
 TextStyle addressStatusTextStyle = GoogleFonts.roboto(
