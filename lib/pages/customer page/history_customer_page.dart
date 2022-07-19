@@ -45,12 +45,12 @@ class _HistoryCustomerPageState extends State<HistoryCustomerPage> {
                               docs.data()! as Map<String, dynamic>;
 
                           return HistoryCustomerCard(
-                            payment: data["payment"],
-                            delivAddress: data["delivAddress"],
-                            cust_address: data["cust_address"],
-                            cust_email: data["cust_email"],
-                            laundry_name: data['laundry_name'],
-                            statusBook: data['statusBook'],
+                            payment: data["payment"] ?? "",
+                            delivAddress: data["delivAddress"] ?? "",
+                            cust_address: data["cust_address"] ?? "",
+                            cust_email: data["cust_email"] ?? "",
+                            laundry_name: data['laundry_name'] ?? "",
+                            statusBook: data['statusBook'] ?? "",
                             total:
                                 "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}",
                           );

@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/models/status_booking.dart';
+import 'package:golaundry/pages/widgets/confirmation_dialogue.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 
@@ -16,13 +17,15 @@ class ProgressAdminCard extends StatefulWidget {
   final String id_booking;
   final String delivAddress;
   final String payment;
+  final BuildContext buildContext;
   ProgressAdminCard(
       {required this.cust_address,
       required this.cust_email,
       required this.total,
       required this.id_booking,
       required this.delivAddress,
-      required this.payment});
+      required this.payment,
+      required this.buildContext});
   @override
   State<ProgressAdminCard> createState() => _ProgressAdminCardState();
 }
@@ -152,26 +155,33 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6))),
                               onPressed: () {
-                                final statusBook = Status(
-                                  statusBook: "rejected",
-                                ).toJson();
+                                showDialog(
+                                    context: context,
+                                    builder: (c) {
+                                      return ConfirmationDialog(
+                                          message:
+                                              "Are you sure want to reject this booking?",
+                                          function: () {
+                                            final statusBook = Status(
+                                              statusBook: "rejected",
+                                            ).toJson();
 
-                                FirebaseFirestore.instance
-                                    .collection("booking")
-                                    .doc(widget.id_booking)
-                                    .update(statusBook)
-                                    .then((value) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (c) {
-                                        return ErrorDialog(
-                                          message: "Booking has been rejected",
-                                        );
-                                      });
-                                });
-                                // print(widget.id_booking);
-                                // print(statusBook);
-                                // print(context);
+                                            FirebaseFirestore.instance
+                                                .collection("booking")
+                                                .doc(widget.id_booking)
+                                                .update(statusBook)
+                                                .then((value) {
+                                              showDialog(
+                                                  context: widget.buildContext,
+                                                  builder: (c) {
+                                                    return ErrorDialog(
+                                                      message:
+                                                          "Booking has been rejected",
+                                                    );
+                                                  });
+                                            });
+                                          });
+                                    });
                               },
                               child: Text(
                                 "Reject",
@@ -182,7 +192,7 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                         ),
                         SizedBox(width: 48),
                         Padding(
-                          padding: const EdgeInsets.only(top: 15),
+                          padding: const EdgeInsets.only(top: 20),
                           child: Container(
                             decoration: BoxDecoration(boxShadow: [
                               BoxShadow(
@@ -198,26 +208,33 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6))),
                               onPressed: () {
-                                final statusBook = Status(
-                                  statusBook: "accepted",
-                                ).toJson();
+                                showDialog(
+                                    context: context,
+                                    builder: (c) {
+                                      return ConfirmationDialog(
+                                          message:
+                                              "Are you sure want to accept this booking?",
+                                          function: () {
+                                            final statusBook = Status(
+                                              statusBook: "accepted",
+                                            ).toJson();
 
-                                FirebaseFirestore.instance
-                                    .collection("booking")
-                                    .doc(widget.id_booking)
-                                    .update(statusBook)
-                                    .then((value) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (c) {
-                                        return ErrorDialog(
-                                          message: "Booking has been accepted",
-                                        );
-                                      });
-                                });
-                                // print(widget.id_booking);
-                                // print(statusBook);
-                                // print(context);
+                                            FirebaseFirestore.instance
+                                                .collection("booking")
+                                                .doc(widget.id_booking)
+                                                .update(statusBook)
+                                                .then((value) {
+                                              showDialog(
+                                                  context: widget.buildContext,
+                                                  builder: (c) {
+                                                    return ErrorDialog(
+                                                      message:
+                                                          "Booking has been accepted",
+                                                    );
+                                                  });
+                                            });
+                                          });
+                                    });
                               },
                               child: Text(
                                 "Accept",

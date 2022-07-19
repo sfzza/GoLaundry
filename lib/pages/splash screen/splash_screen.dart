@@ -26,8 +26,8 @@ class _MySplashScreenState extends State<MySplashScreen> {
             FirebaseFirestore.instance.collection('customers');
         custRef.doc(currentFirebaseUser!.uid).get().then((snapshot) async {
           if (snapshot != null) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (c) => const customerPage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (c) => const AdminPage()));
           } else {
             Navigator.push(
                 context, MaterialPageRoute(builder: (c) => const AdminPage()));

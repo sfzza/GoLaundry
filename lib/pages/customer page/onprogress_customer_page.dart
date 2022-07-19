@@ -45,11 +45,11 @@ class _OnprogressCustomerPageState extends State<OnprogressCustomerPage> {
                               docs.data()! as Map<String, dynamic>;
 
                           return OnprogressCustomerCard(
-                              payment: data["payment"],
-                              delivAddress: data["delivAddress"],
-                              cust_address: data["cust_address"],
-                              cust_email: data["cust_email"],
-                              laundry_name: data["laundry_name"],
+                              payment: data["payment"] ?? "",
+                              delivAddress: data["delivAddress"] ?? "",
+                              cust_address: data["cust_address"] ?? "",
+                              cust_email: data["cust_email"] ?? "",
+                              laundry_name: data["laundry_name"] ?? "",
                               total:
                                   "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}");
                         }).toList(),

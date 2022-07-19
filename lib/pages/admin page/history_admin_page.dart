@@ -34,7 +34,7 @@ class _historyAdminPageState extends State<historyAdminPage> {
                 : snapshot.data!.docs.isEmpty
                     ? Center(
                         child: Text(
-                          'currently you dont have any order on history',
+                          "currently you dont have any order on history",
                           style: noHistoryTextStyle,
                           textAlign: TextAlign.center,
                         ),
@@ -45,10 +45,10 @@ class _historyAdminPageState extends State<historyAdminPage> {
                             docs.data()! as Map<String, dynamic>;
 
                         return HistoryAdminCard(
-                          payment: data["payment"],
-                          delivAddress: data["delivAddress"],
-                          cust_address: data["cust_address"],
-                          cust_email: data["cust_email"],
+                          payment: data["payment"] ?? "",
+                          delivAddress: data["delivAddress"] ?? "",
+                          cust_address: data["cust_address"] ?? "",
+                          cust_email: data["cust_email"] ?? "",
                           total:
                               "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}",
                           statusBook: data['statusBook'],

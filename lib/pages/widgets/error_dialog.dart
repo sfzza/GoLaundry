@@ -22,7 +22,10 @@ class ErrorDialog extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Center(
-            child: Text('OK'),
+            child: Text(
+              'OK',
+              style: chatTitleTextStyle,
+            ),
           ),
           style: ElevatedButton.styleFrom(
             primary: Color(0xff1A374D),

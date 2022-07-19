@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/models/booking.dart';
+import 'package:golaundry/pages/widgets/confirmation_dialogue.dart';
 import 'package:golaundry/pages/widgets/total_payment.dart';
 import '../../theme.dart';
 import '../global/global.dart';
@@ -446,47 +447,65 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        String id = DateTime.now()
-                                            .millisecondsSinceEpoch
-                                            .toString();
-                                        final booking = Booking(
-                                                delivAddress: sharedPreferences!
-                                                    .getString("delivAddress"),
-                                                payment: sharedPreferences!
-                                                    .getString("payment"),
-                                                id_cust: sharedPreferences!
-                                                    .getString("uid"),
-                                                id_laundry: widget.id_laundry,
-                                                id_booking: id,
-                                                cust_email: sharedPreferences!
-                                                    .getString("email"),
-                                                cust_address: sharedPreferences!
-                                                    .getString("address"),
-                                                pickup: DateFormat.yMMMMEEEEd()
-                                                    .format(dateTime)
-                                                    .toString(),
-                                                laundry_name: snapshot
-                                                    .data?["laundry_name"],
-                                                laundry_fare: snapshot
-                                                    .data?["laundry_fare"],
-                                                quantity: quantity,
-                                                price: snapshot.data?["price"],
-                                                statusBook: "ongoing")
-                                            .toJson();
-                                        FirebaseFirestore.instance
-                                            .collection("booking")
-                                            .doc(id)
-                                            .set(booking)
-                                            .then((value) {
-                                          showDialog(
-                                              context: context,
-                                              builder: (c) {
-                                                return ErrorDialog(
+                                        showDialog(
+                                            context: context,
+                                            builder: (c) {
+                                              return ConfirmationDialog(
                                                   message:
-                                                      "booking has been saved.",
-                                                );
-                                              });
-                                        });
+                                                      "Are you sure want to make a booking?",
+                                                  function: () {
+                                                    String id = DateTime.now()
+                                                        .millisecondsSinceEpoch
+                                                        .toString();
+                                                    final booking = Booking(
+                                                            delivAddress:
+                                                                sharedPreferences!
+                                                                    .getString(
+                                                                        "delivAddress"),
+                                                            payment: sharedPreferences!
+                                                                .getString(
+                                                                    "payment"),
+                                                            id_cust: sharedPreferences!
+                                                                .getString(
+                                                                    "uid"),
+                                                            id_laundry: widget
+                                                                .id_laundry,
+                                                            id_booking: id,
+                                                            cust_email:
+                                                                sharedPreferences!
+                                                                    .getString(
+                                                                        "email"),
+                                                            cust_address:
+                                                                sharedPreferences!
+                                                                    .getString(
+                                                                        "address"),
+                                                            pickup: DateFormat.yMMMMEEEEd()
+                                                                .format(
+                                                                    dateTime)
+                                                                .toString(),
+                                                            laundry_name: snapshot
+                                                                .data?["laundry_name"],
+                                                            laundry_fare: snapshot.data?["laundry_fare"],
+                                                            quantity: quantity,
+                                                            price: snapshot.data?["price"],
+                                                            statusBook: "ongoing")
+                                                        .toJson();
+                                                    FirebaseFirestore.instance
+                                                        .collection("booking")
+                                                        .doc(id)
+                                                        .set(booking)
+                                                        .then((value) {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (c) {
+                                                            return ErrorDialog(
+                                                              message:
+                                                                  "booking has been saved.",
+                                                            );
+                                                          });
+                                                    });
+                                                  });
+                                            });
                                       },
                                       child: Text("Place Order",
                                           style: buttonTextStyle))));

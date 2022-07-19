@@ -10,15 +10,19 @@ import '../widgets/progress_bar.dart';
 class OnprogressAdminPage extends StatefulWidget {
   // const OnprogressAdminPage({Key? key, this.id_booking}) : super(key: key);
   final String? id_booking;
+
   OnprogressAdminPage({this.id_booking});
+
   @override
   State<OnprogressAdminPage> createState() => _OnprogressPageState();
 }
 
 class _OnprogressPageState extends State<OnprogressAdminPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Color(0xff6998AB),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
@@ -46,11 +50,12 @@ class _OnprogressPageState extends State<OnprogressAdminPage> {
                             docs.data()! as Map<String, dynamic>;
 
                         return ProgressAdminCard(
-                            payment: data["payment"],
-                            delivAddress: data["delivAddress"],
-                            id_booking: data["id_booking"],
-                            cust_address: data["cust_address"],
-                            cust_email: data["cust_email"],
+                            buildContext: _scaffoldKey.currentContext!,
+                            payment: data["payment"] ?? "",
+                            delivAddress: data["delivAddress"] ?? "",
+                            id_booking: data["id_booking"] ?? "",
+                            cust_address: data["cust_address"] ?? "",
+                            cust_email: data["cust_email"] ?? "",
                             total:
                                 "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}");
                       }).toList());
