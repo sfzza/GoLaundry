@@ -103,6 +103,7 @@ class _customerSignupState extends State<customerSignup> {
       "status": "customer",
       "fullAddress": "no address",
       "payment": "no payment",
+      "delivAddress": "no address"
     });
 
     sharedPreferences = await SharedPreferences.getInstance();

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors, curly_braces_in_flow_control_structures
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors, curly_braces_in_flow_control_structures, avoid_types_as_parameter_names, sized_box_for_whitespace
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +11,15 @@ import '../widgets/error_dialog.dart';
 import '../widgets/progress_bar.dart';
 import 'package:intl/intl.dart';
 
-import 'customer_myorder_page.dart';
-
 class AddDetailsPage extends StatefulWidget {
+  final Booking? boking;
   final String? id_laundry;
   final String? laundry_fare;
   final String? laundry_name;
   final Pricing priceMap = Pricing();
   // final Pricing? priceMap;
-  AddDetailsPage({this.id_laundry, this.laundry_fare, this.laundry_name});
+  AddDetailsPage(
+      {this.id_laundry, this.laundry_fare, this.laundry_name, this.boking});
 
   @override
   State<AddDetailsPage> createState() => _AddDetailsPageState();
@@ -333,35 +333,48 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                             ),
                           );
                         }),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Container(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(color: Color(0xffB1D0E0)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Text(
-                                "Delivery Address",
-                                style: detailTitleFieldTextStyle,
+                    StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance
+                            .collection("customers")
+                            .doc(sharedPreferences!.getString("uid"))
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return circularProgress();
+                          }
+
+                          return Padding(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Container(
+                              height: 100,
+                              width: MediaQuery.of(context).size.width,
+                              decoration:
+                                  BoxDecoration(color: Color(0xffB1D0E0)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      "Delivery Address",
+                                      style: detailTitleFieldTextStyle,
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(right: 20),
+                                      child: Container(
+                                        width: 150,
+                                        child: Text(
+                                          snapshot.data?["delivAddress"],
+                                          style: detailSubtitleFieldTextStyle,
+                                        ),
+                                      ))
+                                ],
                               ),
                             ),
-                            Padding(
-                                padding: const EdgeInsets.only(right: 20),
-                                child: Container(
-                                  width: 150,
-                                  child: Text(
-                                    "no address",
-                                    style: detailSubtitleFieldTextStyle,
-                                  ),
-                                ))
-                          ],
-                        ),
-                      ),
-                    ),
+                          );
+                        }),
                     StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         stream: FirebaseFirestore.instance
                             .collection("customers")
@@ -437,6 +450,8 @@ class _AddDetailsPageState extends State<AddDetailsPage> {
                                             .millisecondsSinceEpoch
                                             .toString();
                                         final booking = Booking(
+                                                delivAddress: sharedPreferences!
+                                                    .getString("delivAddress"),
                                                 payment: sharedPreferences!
                                                     .getString("payment"),
                                                 id_cust: sharedPreferences!

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/widgets/history_customer.dart';
+import 'package:golaundry/pages/widgets/progress_bar.dart';
 
 import '../../theme.dart';
 
@@ -26,33 +27,35 @@ class _HistoryCustomerPageState extends State<HistoryCustomerPage> {
               .where("statusBook",
                   whereIn: ["accepted", "rejected"]).snapshots(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                  child: SizedBox(
-                height: 2,
-              )
-                  // Text(
-                  //   'currently you dont have any order on progress',
-                  //   style: noHistoryTextStyle,
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  );
-            }
-            return ListView(
-              children: snapshot.data!.docs.map((docs) {
-                Map<String, dynamic> data =
-                    docs.data()! as Map<String, dynamic>;
+            return !snapshot.hasData
+                ? Center(
+                    child: circularProgress(),
+                  )
+                : snapshot.data!.docs.isEmpty
+                    ? Center(
+                        child: Text(
+                          'currently you dont have any order on history',
+                          style: noHistoryTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    : ListView(
+                        children: snapshot.data!.docs.map((docs) {
+                          Map<String, dynamic> data =
+                              docs.data()! as Map<String, dynamic>;
 
-                return HistoryCustomerCard(
-                  cust_address: data["cust_address"],
-                  cust_email: data["cust_email"],
-                  laundry_name: data['laundry_name'],
-                  statusBook: data['statusBook'],
-                  total:
-                      "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}",
-                );
-              }).toList(),
-            );
+                          return HistoryCustomerCard(
+                            payment: data["payment"],
+                            delivAddress: data["delivAddress"],
+                            cust_address: data["cust_address"],
+                            cust_email: data["cust_email"],
+                            laundry_name: data['laundry_name'],
+                            statusBook: data['statusBook'],
+                            total:
+                                "${data["laundry_fare"] + (data["price"] * data["quantity"] ?? "")}",
+                          );
+                        }).toList(),
+                      );
           }),
     );
   }

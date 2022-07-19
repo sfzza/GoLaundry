@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 
@@ -11,11 +11,15 @@ class HistoryAdminCard extends StatefulWidget {
   final String cust_address;
   final String total;
   final String statusBook;
+  final String payment;
+  final String delivAddress;
   HistoryAdminCard(
       {required this.cust_address,
       required this.cust_email,
       required this.total,
-      required this.statusBook});
+      required this.statusBook,
+      required this.delivAddress,
+      required this.payment});
   @override
   State<HistoryAdminCard> createState() => _HistoryAdminCardState();
 }
@@ -58,10 +62,61 @@ class _HistoryAdminCardState extends State<HistoryAdminCard> {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                widget.cust_address,
-                style: bookingAddressTextStyle,
-                maxLines: 2,
+              Table(
+                columnWidths: {
+                  0: FixedColumnWidth(130),
+                  // 1: FixedColumnWidth(80)
+                },
+                children: [
+                  TableRow(children: [
+                    Text(
+                      "Pickup Address:",
+                      style: bookingTotalTextStyle,
+                    ),
+                    Text(
+                      widget.cust_address,
+                      style: bookingEmailTextStyle,
+                      // maxLines: 2,
+                    ),
+                  ])
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Table(
+                columnWidths: {
+                  0: FixedColumnWidth(130),
+                  // 1: FixedColumnWidth(80)
+                },
+                children: [
+                  TableRow(children: [
+                    Text(
+                      "Delivery Address:",
+                      style: bookingTotalTextStyle,
+                    ),
+                    Text(
+                      widget.delivAddress,
+                      style: bookingEmailTextStyle,
+                      // maxLines: 2,
+                    ),
+                  ])
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Payment: ",
+                    style: bookingTotalTextStyle,
+                  ),
+                  Text(
+                    widget.payment,
+                    style: bookingEmailTextStyle,
+                  )
+                ],
               ),
               SizedBox(
                 height: 10,

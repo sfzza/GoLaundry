@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:golaundry/maps/maps.dart';
 import 'package:golaundry/pages/assistant_method/address_changer.dart';
 import 'package:golaundry/pages/models/address.dart';
+import 'package:golaundry/theme.dart';
 import 'package:provider/provider.dart';
 
 class AddressDesign extends StatefulWidget {
@@ -27,9 +28,12 @@ class _AddressDesignState extends State<AddressDesign> {
             .displayResult(widget.value);
       },
       child: Card(
-        color: Color(0xff6998AB),
+        color: Color(0xffB1D0E0),
         child: Column(
           children: [
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
                 SizedBox(
@@ -50,63 +54,68 @@ class _AddressDesignState extends State<AddressDesign> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(10),
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: Table(
-                        children: [
-                          TableRow(
-                            children: [
-                              const Text(
-                                "Address Line: ",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(widget.model!.flatNumber.toString()),
-                            ],
-                          ),
-                          TableRow(
-                            children: [
-                              const Text(
-                                "City: ",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(widget.model!.city.toString()),
-                            ],
-                          ),
-                          TableRow(
-                            children: [
-                              const Text(
-                                "State: ",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(widget.model!.state.toString()),
-                            ],
-                          ),
-                          TableRow(
-                            children: [
-                              const Text(
-                                "Full Address: ",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(widget.model!.fullAddress.toString()),
-                            ],
-                          ),
-                        ],
+                      padding: const EdgeInsets.all(15),
+                      width: MediaQuery.of(context).size.width * 0.80,
+
+                      child: Text(
+                        widget.model!.fullAddress.toString(),
+                        style: addressTextStyle,
                       ),
+                      // Table(
+                      //   children: [
+                      //     TableRow(
+                      //       children: [
+                      //         const Text(
+                      //           "Address Line: ",
+                      //           style: TextStyle(
+                      //               color: Colors.black,
+                      //               fontWeight: FontWeight.bold),
+                      //         ),
+                      //         Text(widget.model!.flatNumber.toString()),
+                      //       ],
+                      //     ),
+                      //     TableRow(
+                      //       children: [
+                      //         const Text(
+                      //           "City: ",
+                      //           style: TextStyle(
+                      //               color: Colors.black,
+                      //               fontWeight: FontWeight.bold),
+                      //         ),
+                      //         Text(widget.model!.city.toString()),
+                      //       ],
+                      //     ),
+                      //     TableRow(
+                      //       children: [
+                      //         const Text(
+                      //           "State: ",
+                      //           style: TextStyle(
+                      //               color: Colors.black,
+                      //               fontWeight: FontWeight.bold),
+                      //         ),
+                      //         Text(widget.model!.state.toString()),
+                      //       ],
+                      //     ),
+                      //     TableRow(
+                      //       children: [
+                      //         const Text(
+                      //           "Full Address: ",
+                      //           style: TextStyle(
+                      //               color: Colors.black,
+                      //               fontWeight: FontWeight.bold),
+                      //         ),
+                      //         Text(widget.model!.fullAddress.toString()),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
                     ),
                   ],
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              padding: const EdgeInsets.only(top: 8, bottom: 15),
               child: Container(
                 width: 400,
                 height: 40,

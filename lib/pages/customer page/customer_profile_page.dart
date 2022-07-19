@@ -6,6 +6,7 @@ import 'package:golaundry/pages/customer%20page/customer_address_page.dart';
 import 'package:golaundry/pages/customer%20page/customer_payment_page.dart';
 
 import 'package:golaundry/pages/customer%20page/customer_editprofile_page.dart';
+import 'package:golaundry/pages/customer%20page/delivery%20address/customer_delivery_address.dart';
 
 import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/models/customer.dart';
@@ -65,7 +66,7 @@ class customerProfilePage extends StatelessWidget {
                 ListTile(
                   contentPadding: EdgeInsets.only(left: 20),
                   title: Text(
-                    'Delivery Address',
+                    'Pickup Address',
                     style: profilePageTextStyle,
                   ),
                   onTap: () {
@@ -73,6 +74,24 @@ class customerProfilePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => customerAddressPage()),
+                    );
+                    // Navigator.of(context).pushNamed('/custaddresspage');
+                  },
+                ),
+                Divider(
+                  color: Color(0xff6998AB),
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.only(left: 20),
+                  title: Text(
+                    'Delivery Address',
+                    style: profilePageTextStyle,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => customerAddressDeliveryPage()),
                     );
                     // Navigator.of(context).pushNamed('/custaddresspage');
                   },

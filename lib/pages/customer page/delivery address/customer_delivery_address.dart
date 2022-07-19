@@ -1,22 +1,25 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors, camel_case_types
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/assistant_method/address_changer.dart';
-import 'package:golaundry/pages/customer%20page/customer_add_address_page.dart';
 import 'package:golaundry/pages/global/global.dart';
-import 'package:golaundry/pages/models/address.dart';
-import 'package:golaundry/pages/widgets/address_design.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
 import 'package:provider/provider.dart';
 
-class customerAddressPage extends StatefulWidget {
+import '../../models/deliv_address.dart';
+import 'customer_add_delivery_address.dart';
+import 'deliv_address_design.dart';
+
+class customerAddressDeliveryPage extends StatefulWidget {
   @override
-  State<customerAddressPage> createState() => _customerAddressPageState();
+  State<customerAddressDeliveryPage> createState() =>
+      _customerAddressDeliveryPageState();
 }
 
-class _customerAddressPageState extends State<customerAddressPage> {
+class _customerAddressDeliveryPageState
+    extends State<customerAddressDeliveryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,7 @@ class _customerAddressPageState extends State<customerAddressPage> {
         child: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
-            'PICKUP ADDRESS',
+            'DELIVERY ADDRESS',
             style: titlePageTextStyle,
           ),
           leading: IconButton(
@@ -56,7 +59,7 @@ class _customerAddressPageState extends State<customerAddressPage> {
                       stream: FirebaseFirestore.instance
                           .collection("customers")
                           .doc(sharedPreferences!.getString("uid"))
-                          .collection("cust_address")
+                          .collection("deliv_address")
                           .snapshots(),
                       builder: (context, snapshot) {
                         return !snapshot.hasData
@@ -69,12 +72,12 @@ class _customerAddressPageState extends State<customerAddressPage> {
                                     itemCount: snapshot.data!.docs.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, index) {
-                                      return AddressDesign(
+                                      return DelivAddressDesign(
                                         selectedIndex: address.count,
                                         value: index,
-                                        addressID:
-                                            snapshot.data!.docs[index].id,
-                                        model: Address.fromJson(
+                                        // addressID:
+                                        //     snapshot.data!.docs[index].id,
+                                        model: DelivAddress.fromJson(
                                             snapshot.data!.docs[index].data()!
                                                 as Map<String, dynamic>),
                                       );
@@ -104,7 +107,7 @@ class _customerAddressPageState extends State<customerAddressPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CustomerAddAddressPage()),
+                          builder: (context) => CustomerAddDelivAddressPage()),
                     );
                   },
                   minWidth: 70,

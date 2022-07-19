@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_key_in_widget_constructors, camel_case_types
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -52,10 +52,14 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
             builder: (context, snapshot) {
               if (snapshot.data?["payment"] == "Cash of Delivery") {
                 return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   child: Container(
                     height: 129,
-                    width: 380,
+                    width: MediaQuery.of(context).size.width * 0.96,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
                       color: Color(0xffB1D0E0),
                       border: Border.all(width: 2, color: Color(0xff1A374D)),
                     ),
@@ -98,8 +102,9 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
               return Card(
                 child: Container(
                   height: 129,
-                  width: 380,
+                  width: MediaQuery.of(context).size.width * 0.96,
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
                     color: Color(0xffB1D0E0),
                     border: Border.all(
                       width: 2,
@@ -163,10 +168,14 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
             builder: (context, snapshot) {
               if (snapshot.data?["payment"] == "Credit Card") {
                 return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   child: Container(
                     height: 129,
-                    width: 380,
+                    width: MediaQuery.of(context).size.width * 0.96,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
                       color: Color(0xffB1D0E0),
                       border: Border.all(width: 2, color: Color(0xff1A374D)),
                     ),
@@ -207,10 +216,14 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
                 );
               }
               return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
                 child: Container(
                   height: 129,
-                  width: 380,
+                  width: MediaQuery.of(context).size.width * 0.96,
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
                     color: Color(0xffB1D0E0),
                     border: Border.all(
                       width: 2,
@@ -267,12 +280,12 @@ class _customerPaymentPageState extends State<customerPaymentPage> {
         child: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 6,
             ),
             Cash(0, 'Cash of Delivery'),
-            SizedBox(
-              height: 10,
-            ),
+            // SizedBox(
+            //   height: 6,
+            // ),
             Credit(1, 'Credit Card'),
           ],
         ),

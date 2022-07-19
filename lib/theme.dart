@@ -75,7 +75,7 @@ TextStyle profilePageTextStyle = GoogleFonts.roboto(
 
 // no history Text Style
 TextStyle noHistoryTextStyle = GoogleFonts.roboto(
-    color: Color(0xffC4C4C4), fontSize: 24, fontWeight: FontWeight.w400);
+    color: Color(0xffC4C4C4), fontSize: 22, fontWeight: FontWeight.w400);
 
 // title chat Text Style
 TextStyle chatTitleTextStyle = GoogleFonts.roboto(

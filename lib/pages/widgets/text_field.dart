@@ -12,6 +12,7 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
+        textAlign: TextAlign.center,
         controller: controller,
         decoration: InputDecoration.collapsed(
             hintText: hint, hintStyle: textWhiteFieldTextStyle),

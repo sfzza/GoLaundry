@@ -1,21 +1,24 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_local_variable, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_local_variable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:golaundry/pages/global/global.dart';
-import 'package:golaundry/pages/models/address.dart';
 import 'package:golaundry/pages/widgets/error_dialog.dart';
 import 'package:golaundry/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomerAddAddressPage extends StatefulWidget {
+import '../../models/deliv_address.dart';
+
+class CustomerAddDelivAddressPage extends StatefulWidget {
   @override
-  State<CustomerAddAddressPage> createState() => _CustomerAddAddressPageState();
+  State<CustomerAddDelivAddressPage> createState() =>
+      _CustomerAddDelivAddressPageState();
 }
 
-class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
+class _CustomerAddDelivAddressPageState
+    extends State<CustomerAddDelivAddressPage> {
   final formKey = GlobalKey<FormState>();
   final _flatNumber = TextEditingController();
   final _city = TextEditingController();
@@ -64,7 +67,7 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
         child: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
-            'PICKUP ADDRESS',
+            'DELIVERY ADDRESS',
             style: titlePageTextStyle,
           ),
           leading: IconButton(
@@ -112,32 +115,6 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                 SizedBox(
                   height: 20,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 30),
-                //   child: Form(
-                //     key: formKey,
-                //     child: Column(
-                //       children: [
-                //         MyTextField(
-                //           hint: 'City',
-                //           controller: _city,
-                //         ),
-                //         MyTextField(
-                //           hint: 'State / Country',
-                //           controller: _state,
-                //         ),
-                //         MyTextField(
-                //           hint: 'Address Line',
-                //           controller: _flatNumber,
-                //         ),
-                //         MyTextField(
-                //           hint: 'Complete Address',
-                //           controller: _completeAddress,
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
               ],
             ),
             Column(
@@ -178,13 +155,13 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                       ),
                     ),
                     onPressed: () {
-                      final model = Address(
-                        state: _state.text.trim(),
-                        fullAddress: _completeAddress.text.trim(),
-                        flatNumber: _flatNumber.text.trim(),
-                        city: _city.text.trim(),
-                        lat: position!.latitude,
-                        lng: position!.longitude,
+                      final model = DelivAddress(
+                        delivState: _state.text.trim(),
+                        delivAddress: _completeAddress.text.trim(),
+                        delivFlatNumber: _flatNumber.text.trim(),
+                        delivCity: _city.text.trim(),
+                        delivLat: position!.latitude,
+                        delivLng: position!.longitude,
                       )
                           // status: "unselected")
                           .toJson();
@@ -205,17 +182,17 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                         sharedPreferences =
                             await SharedPreferences.getInstance();
                         await sharedPreferences!
-                            .setDouble("lat", position!.latitude);
+                            .setDouble("delivLat", position!.latitude);
                         await sharedPreferences!
-                            .setDouble("lng", position!.longitude);
-                        await sharedPreferences!
-                            .setString("address", _completeAddress.text.trim());
+                            .setDouble("delivLng", position!.longitude);
+                        await sharedPreferences!.setString(
+                            "delivAddress", _completeAddress.text.trim());
                         // formKey.currentState!.reset();
                       });
                       FirebaseFirestore.instance
                           .collection("customers")
                           .doc(sharedPreferences!.getString("uid"))
-                          .collection("cust_address")
+                          .collection("deliv_address")
                           .doc(sharedPreferences!.getString("uid"))
                           .set(model)
                           .then((value) async {});

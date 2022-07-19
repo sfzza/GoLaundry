@@ -14,11 +14,15 @@ class ProgressAdminCard extends StatefulWidget {
   final String cust_address;
   final String total;
   final String id_booking;
+  final String delivAddress;
+  final String payment;
   ProgressAdminCard(
       {required this.cust_address,
       required this.cust_email,
       required this.total,
-      required this.id_booking});
+      required this.id_booking,
+      required this.delivAddress,
+      required this.payment});
   @override
   State<ProgressAdminCard> createState() => _ProgressAdminCardState();
 }
@@ -55,10 +59,61 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      widget.cust_address,
-                      style: bookingAddressTextStyle,
-                      maxLines: 2,
+                    Table(
+                      columnWidths: {
+                        0: FixedColumnWidth(130),
+                        // 1: FixedColumnWidth(80)
+                      },
+                      children: [
+                        TableRow(children: [
+                          Text(
+                            "Pickup Address:",
+                            style: bookingTotalTextStyle,
+                          ),
+                          Text(
+                            widget.cust_address,
+                            style: bookingEmailTextStyle,
+                            // maxLines: 2,
+                          ),
+                        ])
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Table(
+                      columnWidths: {
+                        0: FixedColumnWidth(130),
+                        // 1: FixedColumnWidth(80)
+                      },
+                      children: [
+                        TableRow(children: [
+                          Text(
+                            "Delivery Address:",
+                            style: bookingTotalTextStyle,
+                          ),
+                          Text(
+                            widget.delivAddress,
+                            style: bookingEmailTextStyle,
+                            // maxLines: 2,
+                          ),
+                        ])
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Payment: ",
+                          style: bookingTotalTextStyle,
+                        ),
+                        Text(
+                          widget.payment,
+                          style: bookingEmailTextStyle,
+                        )
+                      ],
                     ),
                     SizedBox(
                       height: 10,
@@ -80,7 +135,7 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                            top: 15,
+                            top: 20,
                           ),
                           child: Container(
                             decoration: BoxDecoration(boxShadow: [

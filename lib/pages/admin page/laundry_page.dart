@@ -78,7 +78,9 @@ class _LaundryPageState extends State<LaundryPage> {
                         builder: (custcontext, custsnapshot) {
                           if (custsnapshot.data?["fullAddress"] !=
                                   "no address" &&
-                              custsnapshot.data?["payment"] != "no payment") {
+                              custsnapshot.data?["payment"] != "no payment" &&
+                              custsnapshot.data?["delivAddress"] !=
+                                  "no address") {
                             return Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 49),
