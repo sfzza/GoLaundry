@@ -1,8 +1,13 @@
+// ignore_for_file: unused_field, prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/admin%20page/pricing_page.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 import 'package:golaundry/theme.dart';
+
+import '../global/global.dart';
+import '../userlevel_page.dart';
 
 class AdminProfilePage extends StatefulWidget {
   const AdminProfilePage({Key? key}) : super(key: key);
@@ -35,7 +40,7 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff6998AB),
+      backgroundColor: Color(0xffB1D0E0),
       appBar: PreferredSize(
         child: AppBar(
           automaticallyImplyLeading: false,
@@ -56,240 +61,95 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
             }
             return ListView(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: TextFormField(
-                      controller: nameTextEditingController,
-                      cursorColor: Color(0xff1A374D),
-                      decoration: InputDecoration(
-                        hintText: "Laundry Name",
-                        hintStyle: hintTextStyle,
-                        fillColor: Color(0xffB1D0E0),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff406882), width: 3)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff1A374D), width: 3)),
-                      ),
-                      style: textFieldTextStyle),
+                Divider(
+                  color: Color(0xff6998AB),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff406882), width: 3),
-                    ),
-                    height: 58,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffB1D0E0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Choose Picture",
-                              style: hintTextStyle,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0xff6998AB),
-                          )
-                        ],
-                      ),
-                    ),
+                // ListTile(
+                //   contentPadding: EdgeInsets.only(left: 20),
+                //   title: Text(
+                //     'Edit Profile',
+                //     style: profilePageTextStyle,
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => customerEditProfilePage()),
+                //     );
+                //     // Navigator.of(context).pushNamed('/custeditprofilepage');
+                //   },
+                // ),
+                // Divider(
+                //   color: Color(0xff6998AB),
+                // ),
+                // ListTile(
+                //   contentPadding: EdgeInsets.only(left: 20),
+                //   title: Text(
+                //     'Delivery Address',
+                //     style: profilePageTextStyle,
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => customerAddressPage()),
+                //     );
+                //     // Navigator.of(context).pushNamed('/custaddresspage');
+                //   },
+                // ),
+                // Divider(
+                //   color: Color(0xff6998AB),
+                // ),
+                // ListTile(
+                //   contentPadding: EdgeInsets.only(left: 20),
+                //   title: Text(
+                //     'Payment Method',
+                //     style: profilePageTextStyle,
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => customerPaymentPage()),
+                //     );
+                //     // Navigator.of(context).pushNamed('/custpaymentpage');
+                //   },
+                // ),
+                // Divider(
+                //   color: Color(0xff6998AB),
+                // ),
+                ListTile(
+                  contentPadding: EdgeInsets.only(left: 20),
+                  title: Text(
+                    'Pricing',
+                    style: profilePageTextStyle,
                   ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PricingPage()),
+                    );
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: TextFormField(
-                      controller: emailTextEditingController,
-                      cursorColor: Color(0xff1A374D),
-                      decoration: InputDecoration(
-                        hintText: "Email Address",
-                        hintStyle: hintTextStyle,
-                        fillColor: Color(0xffB1D0E0),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff406882), width: 3)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff1A374D), width: 3)),
-                      ),
-                      style: textFieldTextStyle),
+                Divider(
+                  color: Color(0xff6998AB),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: TextFormField(
-                      controller: phoneTextEditingController,
-                      cursorColor: Color(0xff1A374D),
-                      decoration: InputDecoration(
-                        hintText: "Phone Number",
-                        hintStyle: hintTextStyle,
-                        fillColor: Color(0xffB1D0E0),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff406882), width: 3)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff1A374D), width: 3)),
-                      ),
-                      style: textFieldTextStyle),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: TextFormField(
-                      controller: fareTextEditingController,
-                      cursorColor: Color(0xff1A374D),
-                      decoration: InputDecoration(
-                        hintText: "Fare per 1 KM",
-                        hintStyle: hintTextStyle,
-                        fillColor: Color(0xffB1D0E0),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff406882), width: 3)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff1A374D), width: 3)),
-                      ),
-                      style: textFieldTextStyle),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: TextFormField(
-                      controller: hourTextEditingController,
-                      cursorColor: Color(0xff1A374D),
-                      decoration: InputDecoration(
-                        hintText: "Operation Hour",
-                        hintStyle: hintTextStyle,
-                        fillColor: Color(0xffB1D0E0),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff406882), width: 3)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            borderSide:
-                                BorderSide(color: Color(0xff1A374D), width: 3)),
-                      ),
-                      style: textFieldTextStyle),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff406882), width: 3),
-                    ),
-                    height: 58,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffB1D0E0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PricingPage()),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Pricing",
-                              style: hintTextStyle,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0xff6998AB),
-                          )
-                        ],
-                      ),
-                    ),
+                ListTile(
+                  contentPadding: EdgeInsets.only(left: 20),
+                  title: Text(
+                    'Logout',
+                    style: profilePageTextStyle,
                   ),
+                  onTap: () {
+                    firebaseAuth.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => UserLevelPage()),
+                    );
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff406882), width: 3),
-                    ),
-                    height: 58,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffB1D0E0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Choose Tags",
-                              style: hintTextStyle,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0xff6998AB),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 49, bottom: 30),
-                    child: Container(
-                      width: 267,
-                      height: 50,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Color(0xff406882),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'Save',
-                          style: buttonTextStyle,
-                        ),
-                      ),
-                    ),
-                  ),
+                Divider(
+                  color: Color(0xff6998AB),
                 ),
               ],
             );

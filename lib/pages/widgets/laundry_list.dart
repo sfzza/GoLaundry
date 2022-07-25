@@ -6,7 +6,7 @@ import 'package:golaundry/theme.dart';
 class LaundryList extends StatefulWidget {
   final String laundry_name;
   final String laundry_hour;
-  final String distance;
+  final int distance;
   LaundryList(
       {required this.laundry_name,
       required this.laundry_hour,
@@ -65,10 +65,10 @@ class _LaundryListState extends State<LaundryList> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
-              child: Text(widget.distance),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 20, left: 20),
+            //   child: Text(widget.distance.toString()),
+            // ),
           ],
         ),
         height: 90,

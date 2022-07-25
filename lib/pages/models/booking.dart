@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 class Booking {
-  // String? id_price;
   String? id_booking;
   String? id_laundry;
   String? id_cust;
@@ -12,11 +11,11 @@ class Booking {
   String? pickup;
   int? price;
   String? statusBook;
+  int? quantity;
+  String? payment;
 
   Booking(
-      {
-      // this.id_price,
-      this.id_booking,
+      {this.id_booking,
       this.price,
       this.cust_address,
       this.cust_email,
@@ -25,10 +24,11 @@ class Booking {
       this.laundry_fare,
       this.laundry_name,
       this.pickup,
-      this.statusBook});
+      this.statusBook,
+      this.quantity,
+      this.payment});
 
   Booking.fromJson(Map<String, dynamic> json) {
-    // id_price = json['id_price'];
     price = json['price'];
     cust_email = json['cust_email'];
     cust_address = json['cust_address'];
@@ -39,11 +39,13 @@ class Booking {
     id_booking = json['id_booking'];
     pickup = json['pickup'];
     statusBook = json['statusBook'];
+    quantity = json['quantity'];
+    payment = json['payment'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    // data['id_price'] = id_price;
+
     data['price'] = price;
     data['cust_email'] = cust_email;
     data['cust_address'] = cust_address;
@@ -54,6 +56,8 @@ class Booking {
     data['id_booking'] = id_booking;
     data['pickup'] = pickup;
     data['statusBook'] = statusBook;
+    data['quantity'] = quantity;
+    data['payment'] = payment;
     return data;
   }
 

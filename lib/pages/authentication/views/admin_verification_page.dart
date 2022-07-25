@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_const_constructors_in_immutables, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_constructors_in_immutables, prefer_const_constructors, must_be_immutable, camel_case_types, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/authentication/views/login_admin.dart';
@@ -6,9 +6,15 @@ import 'package:golaundry/pages/authentication/views/signup_admin.dart';
 import 'package:golaundry/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class adminVerificationPage extends StatelessWidget {
-  adminVerificationPage({Key? key}) : super(key: key);
+class adminVerificationPage extends StatefulWidget {
+  int selectedPage;
+  adminVerificationPage({required this.selectedPage});
 
+  @override
+  State<adminVerificationPage> createState() => _adminVerificationPageState();
+}
+
+class _adminVerificationPageState extends State<adminVerificationPage> {
   List<Tab> userTab = [
     Tab(text: "Sign Up"),
     Tab(
@@ -21,6 +27,7 @@ class adminVerificationPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
+        initialIndex: widget.selectedPage,
         length: 2,
         child: Scaffold(
           backgroundColor: Color(0xffB1D0E0),

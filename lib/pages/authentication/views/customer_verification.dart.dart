@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_const_constructors_in_immutables, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_constructors_in_immutables, prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/authentication/views/login_customer_page.dart';
@@ -8,8 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 // final GlobalKey<NavigatorState> _navkey = GlobalKey<NavigatorState>();
 
 class customerVerificationPage extends StatefulWidget {
-  customerVerificationPage({Key? key}) : super(key: key);
-
+  // customerVerificationPage({Key? key}) : super(key: key);
+  int selectedPage;
+  customerVerificationPage({required this.selectedPage});
   @override
   State<customerVerificationPage> createState() =>
       _customerVerificationPageState();
@@ -22,18 +23,13 @@ class _customerVerificationPageState extends State<customerVerificationPage> {
       text: "Log In",
     ),
   ];
-  // late final TabController _tabController;
-  // @override
-  // void initState() {
-  //   _tabController = TabController(length: 2, vsync: this);
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
+        initialIndex: widget.selectedPage,
         length: 2,
         child: Scaffold(
           backgroundColor: Color(0xffB1D0E0),
@@ -63,16 +59,6 @@ class _customerVerificationPageState extends State<customerVerificationPage> {
             customerSignup(),
             customerLogin(),
           ]),
-
-          // Navigator(
-          //   key: _navkey,
-          //   onGenerateRoute: (_) => MaterialPageRoute(
-          //     builder: (_) => TabBarView(
-          //       children: [customerLogin(), customerSignup()],
-          //       controller: _tabController,
-          //     ),
-          // ),
-          // ),
         ),
       ),
     );

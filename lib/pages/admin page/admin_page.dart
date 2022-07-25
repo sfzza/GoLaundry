@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/admin%20page/admin_homepage.dart';
-import 'package:golaundry/pages/admin%20page/admin_notification_page.dart';
 import 'package:golaundry/pages/admin%20page/admin_profile_page.dart';
 import 'package:golaundry/pages/admin%20page/admin_request_page.dart';
+import 'package:golaundry/pages/views/chats_page.dart';
 import 'package:golaundry/theme.dart';
 
 class AdminPage extends StatefulWidget {
@@ -19,7 +19,9 @@ class _AdminPageState extends State<AdminPage> {
   final screens = [
     AdminHomePage(),
     AdminRequestPage(),
-    AdminNotificationPage(),
+    ChatsPage(),
+    // AdminNotificationPage(),
+    // MyHomePage()
     AdminProfilePage()
   ];
   @override

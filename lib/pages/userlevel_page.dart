@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/authentication/views/customer_verification.dart.dart';
 import 'package:golaundry/theme.dart';
@@ -18,12 +20,22 @@ class _UserLevelPageState extends State<UserLevelPage> {
       return InkWell(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => adminVerificationPage()),
+          MaterialPageRoute(
+              builder: (context) => adminVerificationPage(
+                    selectedPage: 0,
+                  )),
         ),
         child: Container(
           width: 149,
           height: 149,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(1, 2),
+                blurRadius: 2.0,
+              )
+            ],
             color: Color(0xff6998AB),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(width: 2, color: Color(0xff1A374D)),
@@ -56,12 +68,22 @@ class _UserLevelPageState extends State<UserLevelPage> {
       return InkWell(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => customerVerificationPage()),
+          MaterialPageRoute(
+              builder: (context) => customerVerificationPage(
+                    selectedPage: 0,
+                  )),
         ),
         child: Container(
           width: 149,
           height: 149,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(1, 2),
+                blurRadius: 2.0,
+              )
+            ],
             color: Color(0xff6998AB),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(width: 2, color: Color(0xff1A374D)),
@@ -94,16 +116,16 @@ class _UserLevelPageState extends State<UserLevelPage> {
       backgroundColor: Color(0xffB1D0E0),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(top: 80.0),
+          padding: const EdgeInsets.only(top: 90.0),
           child: Column(
             children: [
               Image.asset(
-                'assets/Logo.png',
-                width: 231,
-                height: 55,
+                'assets/golaundry-02.png',
+                width: 300,
+                height: 110,
               ),
               SizedBox(
-                height: 190,
+                height: 160,
               ),
               Text(
                 'Which one are you?',

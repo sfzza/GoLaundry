@@ -1,10 +1,11 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_field, camel_case_types
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:golaundry/pages/customer%20page/customer_page.dart';
 import 'package:golaundry/pages/global/global.dart';
-import 'package:golaundry/pages/userlevel_page.dart';
 import 'package:golaundry/pages/widgets/error_dialog.dart';
 import 'package:golaundry/theme.dart';
 
@@ -161,6 +162,16 @@ class _customerLoginState extends State<customerLogin> {
           child: Padding(
             padding: const EdgeInsets.only(top: 49),
             child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(1, 2),
+                    blurRadius: 2.0,
+                  )
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(9)),
+              ),
               width: 267,
               height: 50,
               child: TextButton(
@@ -179,6 +190,26 @@ class _customerLoginState extends State<customerLogin> {
                 ),
               ),
             ),
+          ),
+        ),
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Don't have an account?",
+                style: thinTextStyle,
+              ),
+              TextButton(
+                onPressed: () {
+                  DefaultTabController.of(context)!.animateTo(0);
+                },
+                child: Text(
+                  "Sign up",
+                  style: thinButtonTextStyle,
+                ),
+              ),
+            ],
           ),
         ),
       ],

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -99,6 +101,8 @@ class _customerSignupState extends State<customerSignup> {
       "cust_phone": phoneTextEditingController.text.trim(),
       "cust_password": passwordTextEditingController.text.trim(),
       "status": "customer",
+      "fullAddress": "no address",
+      "payment": "no payment",
     });
 
     sharedPreferences = await SharedPreferences.getInstance();
@@ -107,6 +111,7 @@ class _customerSignupState extends State<customerSignup> {
     await sharedPreferences!
         .setString("name", nameTextEditingController.text.trim());
     await sharedPreferences!.setString("status", "customer");
+    // await sharedPreferences!.setString("fullAddress", "no address");
 
     // await sharedPreferences!
     //     .setString("phone", phoneTextEditingController.text.trim());
@@ -155,7 +160,8 @@ class _customerSignupState extends State<customerSignup> {
           child: TextFormField(
               autocorrect: false,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))
+                // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                FilteringTextInputFormatter.allow(RegExp("[a-z A-Z á-ú Á-Ú]"))
               ],
               controller: nameTextEditingController,
               cursorColor: Color(0xff1A374D),
@@ -230,6 +236,16 @@ class _customerSignupState extends State<customerSignup> {
           child: Padding(
             padding: const EdgeInsets.only(top: 49),
             child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(1, 2),
+                    blurRadius: 2.0,
+                  )
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(9)),
+              ),
               width: 267,
               height: 50,
               child: TextButton(
@@ -250,6 +266,26 @@ class _customerSignupState extends State<customerSignup> {
                 ),
               ),
             ),
+          ),
+        ),
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Already have an account?",
+                style: thinTextStyle,
+              ),
+              TextButton(
+                onPressed: () {
+                  DefaultTabController.of(context)!.animateTo(1);
+                },
+                child: Text(
+                  "Log in",
+                  style: thinButtonTextStyle,
+                ),
+              ),
+            ],
           ),
         ),
       ],

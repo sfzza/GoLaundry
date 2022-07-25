@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'dart:async';
 // import 'dart:io';
 
@@ -5,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:golaundry/pages/admin%20page/admin_page.dart';
@@ -37,9 +40,20 @@ class _adminSignupState extends State<adminSignup> {
   TextEditingController operationHourTextEditingController =
       TextEditingController();
   TextEditingController fareTextEditingController = TextEditingController();
+  TextEditingController priceTextEditingController = TextEditingController();
 
   // XFile? imageXFile;
   // final ImagePicker _picker = ImagePicker();
+  List? _myActivities;
+  late String _myActivitiesResult;
+  final formKey = new GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _myActivities = [];
+    _myActivitiesResult = '';
+  }
 
   Position? position;
   List<Placemark>? placeMarks;
@@ -183,6 +197,12 @@ class _adminSignupState extends State<adminSignup> {
           builder: (c) {
             return ErrorDialog(message: 'Please enter an address!');
           });
+    } else if (priceTextEditingController.text.isEmpty) {
+      showDialog(
+          context: context,
+          builder: (c) {
+            return ErrorDialog(message: 'Please enter the price!');
+          });
     } else {
       saveAdminInfoNow();
       LoadingDialog(message: 'make an account');
@@ -228,10 +248,14 @@ class _adminSignupState extends State<adminSignup> {
       "laundry_address": completeAddress,
       "laundry_fare": int.parse(fareTextEditingController.text),
       "laundry_hour": operationHourTextEditingController.text.trim(),
+      "price": int.parse(
+        priceTextEditingController.text.trim(),
+      ),
       "lat": position!.latitude,
       "lng": position!.longitude,
       // "laundry_tags": ['garbageValue'],
       "status": "approved",
+      "tags": _myActivities,
     });
     sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences!.setString("uid", currentUser.uid);
@@ -251,7 +275,7 @@ class _adminSignupState extends State<adminSignup> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 65, left: 30.0, bottom: 40),
+            padding: const EdgeInsets.only(top: 65, left: 30.0, bottom: 20),
             child: Text(
               'Join GoLaundry',
               style: titleTextStyle,
@@ -277,6 +301,73 @@ class _adminSignupState extends State<adminSignup> {
           //     ),
           //   ),
           // ),
+          Padding(
+            padding: const EdgeInsets.only(left: 54, right: 54),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(0),
+                    child: MultiSelectFormField(
+                      autovalidate: AutovalidateMode.disabled,
+                      chipBackGroundColor: Color(0xff6998AB),
+                      fillColor: Color(0xffB1D0E0),
+                      chipLabelStyle: chatTitleTextStyle,
+                      dialogTextStyle: checkBoxTextStyle,
+                      checkBoxActiveColor: Color(0xff406882),
+                      checkBoxCheckColor: Color(0xffB1D0E0),
+                      dialogShapeBorder: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
+                      title:
+                          Text("Laundry Tags", style: bookingStatusTextStyle),
+                      validator: (value) {
+                        if (value == null || value.length == 0) {
+                          return 'Please select one or more options';
+                        }
+                        return null;
+                      },
+                      dataSource: [
+                        {
+                          "display": "Dry Cleaning",
+                          "value": "dry",
+                        },
+                        {
+                          "display": "Wash",
+                          "value": "wash",
+                        },
+                        {
+                          "display": "Iron",
+                          "value": "iron",
+                        },
+                        {
+                          "display": "Wash and Iron",
+                          "value": "washniron",
+                        },
+                      ],
+                      textField: 'display',
+                      valueField: 'value',
+                      okButtonLabel: 'OK',
+                      cancelButtonLabel: 'CANCEL',
+                      hintWidget: const Text('Please choose one or more'),
+                      initialValue: _myActivities,
+                      onSaved: (value) {
+                        if (value == null) return;
+                        setState(() {
+                          _myActivities = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           Padding(
             padding: const EdgeInsets.only(
               left: 54,
@@ -413,11 +504,40 @@ class _adminSignupState extends State<adminSignup> {
           Padding(
             padding: const EdgeInsets.only(left: 54, right: 54),
             child: TextFormField(
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 autocorrect: false,
                 controller: fareTextEditingController,
                 cursorColor: Color(0xff1A374D),
                 decoration: InputDecoration(
-                  hintText: "Fare per 1 KM",
+                  suffix: Text(" Rupiah"),
+                  hintText: "Fare Laundry",
+                  hintStyle: hintTextStyle,
+                  fillColor: Color(0xffB1D0E0),
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff406882), width: 3)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3),
+                      borderSide:
+                          BorderSide(color: Color(0xff1A374D), width: 3)),
+                ),
+                style: textFieldTextStyle),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 54, right: 54),
+            child: TextFormField(
+                autocorrect: false,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                controller: priceTextEditingController,
+                cursorColor: Color(0xff1A374D),
+                decoration: InputDecoration(
+                  suffix: Text(" Rupiah"),
+                  hintText: "Price per 1 Kg",
                   hintStyle: hintTextStyle,
                   fillColor: Color(0xffB1D0E0),
                   filled: true,
@@ -458,6 +578,7 @@ class _adminSignupState extends State<adminSignup> {
                 ),
                 style: textFieldTextStyle),
           ),
+
           SizedBox(
             height: 20,
           ),
@@ -504,6 +625,16 @@ class _adminSignupState extends State<adminSignup> {
             child: Padding(
               padding: const EdgeInsets.only(top: 49),
               child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(1, 2),
+                      blurRadius: 2.0,
+                    )
+                  ],
+                  borderRadius: BorderRadius.all(Radius.circular(9)),
+                ),
                 width: 267,
                 height: 50,
                 child: TextButton(
@@ -524,8 +655,28 @@ class _adminSignupState extends State<adminSignup> {
               ),
             ),
           ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already have an account?",
+                  style: thinTextStyle,
+                ),
+                TextButton(
+                  onPressed: () {
+                    DefaultTabController.of(context)!.animateTo(1);
+                  },
+                  child: Text(
+                    "Log in",
+                    style: thinButtonTextStyle,
+                  ),
+                ),
+              ],
+            ),
+          ),
           SizedBox(
-            height: 20,
+            height: 80,
           )
         ],
       ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 
 import '../../theme.dart';
@@ -18,6 +20,13 @@ class _TotalPaymentState extends State<TotalPayment> {
       width: MediaQuery.of(context).size.width,
       height: 140,
       decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0, -1),
+                blurRadius: 2,
+                spreadRadius: 1)
+          ],
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(30),
           ),

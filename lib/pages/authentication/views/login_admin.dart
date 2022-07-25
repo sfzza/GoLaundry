@@ -1,10 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types, unused_field, prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:golaundry/pages/admin%20page/admin_page.dart';
 import 'package:golaundry/pages/global/global.dart';
-import 'package:golaundry/pages/userlevel_page.dart';
 import 'package:golaundry/pages/widgets/error_dialog.dart';
 import 'package:golaundry/theme.dart';
 
@@ -16,7 +17,6 @@ class adminLogin extends StatefulWidget {
 }
 
 class _adminLoginState extends State<adminLogin> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
@@ -75,10 +75,7 @@ class _adminLoginState extends State<adminLogin> {
             .setString("email", snapshot.data()!["laundry_email"]);
         await sharedPreferences!
             .setString("name", snapshot.data()!["laundry_name"]);
-        // List<String> laundrytags =
-        //     snapshot.data()!["laundry_tags"].cast<String>();
-        // await sharedPreferences!.setStringList("laundry_tags", laundrytags);
-        // Navigator.pop(context);
+
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const AdminPage()));
       } else {
@@ -169,6 +166,16 @@ class _adminLoginState extends State<adminLogin> {
           child: Padding(
             padding: const EdgeInsets.only(top: 49),
             child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(1, 2),
+                    blurRadius: 2.0,
+                  )
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(9)),
+              ),
               width: 267,
               height: 50,
               child: TextButton(
@@ -187,6 +194,26 @@ class _adminLoginState extends State<adminLogin> {
                 ),
               ),
             ),
+          ),
+        ),
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Don't have an account?",
+                style: thinTextStyle,
+              ),
+              TextButton(
+                onPressed: () {
+                  DefaultTabController.of(context)!.animateTo(0);
+                },
+                child: Text(
+                  "Sign up",
+                  style: thinButtonTextStyle,
+                ),
+              ),
+            ],
           ),
         ),
       ]),

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:golaundry/pages/view_laundry_service_page.dart';
 import 'package:golaundry/theme.dart';
 
-class laundryChoices extends StatelessWidget {
+class laundryBox extends StatelessWidget {
   final String imageUrl;
   final String text;
 
-  laundryChoices({required this.imageUrl, required this.text});
+  laundryBox({required this.imageUrl, required this.text});
 
   @override
   Widget build(BuildContext context) {

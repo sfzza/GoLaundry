@@ -5,6 +5,7 @@ import 'package:golaundry/pages/customer%20page/customer_homepage.dart';
 import 'package:golaundry/pages/customer%20page/customer_myorder_page.dart';
 import 'package:golaundry/pages/customer%20page/customer_notification_page.dart';
 import 'package:golaundry/pages/customer%20page/customer_profile_page.dart';
+import 'package:golaundry/pages/views/chats_page.dart';
 
 import 'package:golaundry/pages/widgets/laundry_choices.dart';
 import 'package:golaundry/pages/widgets/popular_laundry.dart';
@@ -23,7 +24,8 @@ class _customerPageState extends State<customerPage> {
   final screens = [
     customerHomePage(),
     customerMyOrderPage(),
-    customerNotificationPage(),
+    ChatsPage(),
+    // customerNotificationPage(),
     customerProfilePage()
   ];
   @override

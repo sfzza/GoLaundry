@@ -1,41 +1,30 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Utils {
-  static List<Widget> modelBuilder<M>(
-          List<M> models, Widget Function(int index, M model) builder) =>
-      models
-          .asMap()
-          .map<int, Widget>(
-              (index, model) => MapEntry(index, builder(index, model)))
-          .values
-          .toList();
+  static StreamTransformer<QuerySnapshot<Map<String, dynamic>>, List<T>>
+      transformer<T>(T Function(Map<String, dynamic> json) fromJson) =>
+          StreamTransformer<QuerySnapshot<Map<String, dynamic>>,
+              List<T>>.fromHandlers(
+            handleData: (QuerySnapshot<Map<String, dynamic>> data,
+                EventSink<List<T>> sink) {
+              final snaps = data.docs.map((doc) => doc.data()).toList();
+              final users = snaps.map((json) => fromJson(json)).toList();
 
-  static void showSheet(
-    BuildContext context, {
-    required Widget child,
-    required VoidCallback onClicked,
-  }) =>
-      showCupertinoModalPopup(
-        context: context,
-        builder: (context) => CupertinoActionSheet(
-          actions: [
-            child,
-          ],
-          cancelButton: CupertinoActionSheetAction(
-            child: Text('Done'),
-            onPressed: onClicked,
-          ),
-        ),
-      );
+              sink.add(users);
+            },
+          );
 
-  static void showSnackBar(BuildContext context, String text) {
-    final snackBar = SnackBar(
-      content: Text(text, style: TextStyle(fontSize: 24)),
-    );
+  static DateTime toDateTime(Timestamp value) {
+    // if (value == null) return null;
 
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(snackBar);
+    return value.toDate();
+  }
+
+  static dynamic fromDateTimeToJson(DateTime date) {
+    // if (date == null) return null;
+
+    return date.toUtc();
   }
 }

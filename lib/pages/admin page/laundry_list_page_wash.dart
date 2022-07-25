@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'dart:math';
 
@@ -9,22 +9,24 @@ import 'package:golaundry/pages/global/global.dart';
 import 'package:golaundry/pages/widgets/laundry_list.dart';
 import 'package:golaundry/pages/widgets/progress_bar.dart';
 
-class LaundryListPage extends StatefulWidget {
-  const LaundryListPage({Key? key}) : super(key: key);
+class LaundryListPageWash extends StatefulWidget {
+  const LaundryListPageWash({Key? key}) : super(key: key);
 
   @override
-  State<LaundryListPage> createState() => _LaundryListPageState();
+  State<LaundryListPageWash> createState() => _LaundryListPageWashState();
 }
 
-class _LaundryListPageState extends State<LaundryListPage> {
+class _LaundryListPageWashState extends State<LaundryListPageWash> {
   double calculateDistance(lat, lon) {
     double? latCal = sharedPreferences!.getDouble("lng");
     double? lonCal = sharedPreferences!.getDouble("lat");
     var p = 0.017453292519943295;
     var c = cos;
+    var R = 6371.0;
     var a = 0.5 -
         c((lat - latCal) * p) / 2 +
         c(latCal! * p) * c(lat * p) * (1 - c((lon - lonCal) * p)) / 2;
+    // return 2 * R;
     return 12742 * asin(sqrt(a));
   }
 
@@ -33,7 +35,10 @@ class _LaundryListPageState extends State<LaundryListPage> {
     return Container(
       color: Color(0xff6998AB),
       child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection("admins").snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection("admins")
+              .where("tags", arrayContains: "wash")
+              .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return circularProgress();
@@ -53,10 +58,10 @@ class _LaundryListPageState extends State<LaundryListPage> {
                     );
                   },
                   child: LaundryList(
-                    laundry_name: data["laundry_name"],
-                    laundry_hour: data["laundry_hour"],
-                    distance: "",
-                  ),
+                      laundry_name: data["laundry_name"],
+                      laundry_hour: data["laundry_hour"],
+                      distance:
+                          calculateDistance(data["lat"], data["lng"]).toInt()),
                 );
               }).toList(),
             );

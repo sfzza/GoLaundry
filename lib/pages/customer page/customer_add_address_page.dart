@@ -11,6 +11,8 @@ import 'package:golaundry/pages/widgets/text_field.dart';
 import 'package:golaundry/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'customer_address_page.dart';
+
 class CustomerAddAddressPage extends StatefulWidget {
   @override
   State<CustomerAddAddressPage> createState() => _CustomerAddAddressPageState();
@@ -169,21 +171,22 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                     ),
                     onPressed: () {
                       final model = Address(
-                              state: _state.text.trim(),
-                              fullAddress: _completeAddress.text.trim(),
-                              flatNumber: _flatNumber.text.trim(),
-                              city: _city.text.trim(),
-                              lat: position!.latitude,
-                              lng: position!.longitude,
-                              status: "unselected")
+                        state: _state.text.trim(),
+                        fullAddress: _completeAddress.text.trim(),
+                        flatNumber: _flatNumber.text.trim(),
+                        city: _city.text.trim(),
+                        lat: position!.latitude,
+                        lng: position!.longitude,
+                      )
+                          // status: "unselected")
                           .toJson();
 
                       FirebaseFirestore.instance
                           .collection("customers")
                           .doc(sharedPreferences!.getString("uid"))
-                          .collection("cust_address")
-                          .doc(sharedPreferences!.getString("uid"))
-                          .set(model)
+                          // .collection("cust_address")
+                          // .doc(sharedPreferences!.getString("uid"))
+                          .update(model)
                           .then((value) async {
                         showDialog(
                             context: context,
@@ -192,6 +195,7 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                                 message: "new address has been saved.",
                               );
                             });
+                        // Navigator.pop(context);
                         sharedPreferences =
                             await SharedPreferences.getInstance();
                         await sharedPreferences!
@@ -202,6 +206,13 @@ class _CustomerAddAddressPageState extends State<CustomerAddAddressPage> {
                             .setString("address", _completeAddress.text.trim());
                         // formKey.currentState!.reset();
                       });
+                      FirebaseFirestore.instance
+                          .collection("customers")
+                          .doc(sharedPreferences!.getString("uid"))
+                          .collection("cust_address")
+                          .doc(sharedPreferences!.getString("uid"))
+                          .set(model)
+                          .then((value) async {});
                     },
                     child: Text(
                       'save the address',

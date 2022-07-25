@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/models/status_booking.dart';
@@ -36,9 +38,12 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
               return circularProgress();
             }
             return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               color: Color(0xffB1D0E0),
               child: Padding(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -71,53 +76,24 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                            width: 48,
-                            height: 21,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: Colors.green,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6))),
-                              onPressed: () {
-                                final statusBook = Status(
-                                  statusBook: "accepted",
-                                ).toJson();
-
-                                FirebaseFirestore.instance
-                                    .collection("booking")
-                                    .doc(widget.id_booking)
-                                    .update(statusBook)
-                                    .then((value) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (c) {
-                                        return ErrorDialog(
-                                          message: "Status has been changed",
-                                        );
-                                      });
-                                });
-                                print(widget.id_booking);
-                                print(statusBook);
-                                print(context);
-                              },
-                              child: Text(""),
-                            ),
+                          padding: const EdgeInsets.only(
+                            top: 15,
                           ),
-                        ),
-                        SizedBox(width: 5),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
                           child: Container(
-                            width: 48,
-                            height: 21,
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 1.5)
+                            ], borderRadius: BorderRadius.circular(6)),
+                            width: 112,
+                            height: 35,
                             child: TextButton(
                               style: TextButton.styleFrom(
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: Color(0xff406882),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6))),
                               onPressed: () {
@@ -134,16 +110,63 @@ class _ProgressAdminCardState extends State<ProgressAdminCard> {
                                       context: context,
                                       builder: (c) {
                                         return ErrorDialog(
-                                          message: "Status has been changed",
+                                          message: "Booking has been rejected",
                                         );
                                       });
                                 });
-                                print(widget.id_booking);
-                                print(statusBook);
-                                print(context);
+                                // print(widget.id_booking);
+                                // print(statusBook);
+                                // print(context);
                               },
                               child: Text(
-                                "",
+                                "Reject",
+                                style: chatTitleTextStyle,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 48),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Container(
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 1.5)
+                            ], borderRadius: BorderRadius.circular(6)),
+                            width: 112,
+                            height: 35,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: Color(0xff6998AB),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6))),
+                              onPressed: () {
+                                final statusBook = Status(
+                                  statusBook: "accepted",
+                                ).toJson();
+
+                                FirebaseFirestore.instance
+                                    .collection("booking")
+                                    .doc(widget.id_booking)
+                                    .update(statusBook)
+                                    .then((value) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (c) {
+                                        return ErrorDialog(
+                                          message: "Booking has been accepted",
+                                        );
+                                      });
+                                });
+                                // print(widget.id_booking);
+                                // print(statusBook);
+                                // print(context);
+                              },
+                              child: Text(
+                                "Accept",
+                                style: chatTitleTextStyle,
                               ),
                             ),
                           ),

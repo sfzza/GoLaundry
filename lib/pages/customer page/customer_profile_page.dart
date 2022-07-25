@@ -12,6 +12,8 @@ import 'package:golaundry/pages/models/customer.dart';
 import 'package:golaundry/pages/userlevel_page.dart';
 import 'package:golaundry/theme.dart';
 
+import 'checkbox.dart';
+
 class customerProfilePage extends StatelessWidget {
   const customerProfilePage({Key? key}) : super(key: key);
 
@@ -42,24 +44,24 @@ class customerProfilePage extends StatelessWidget {
                 Divider(
                   color: Color(0xff6998AB),
                 ),
-                ListTile(
-                  contentPadding: EdgeInsets.only(left: 20),
-                  title: Text(
-                    'Edit Profile',
-                    style: profilePageTextStyle,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => customerEditProfilePage()),
-                    );
-                    // Navigator.of(context).pushNamed('/custeditprofilepage');
-                  },
-                ),
-                Divider(
-                  color: Color(0xff6998AB),
-                ),
+                // ListTile(
+                //   contentPadding: EdgeInsets.only(left: 20),
+                //   title: Text(
+                //     'Edit Profile',
+                //     style: profilePageTextStyle,
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => customerEditProfilePage()),
+                //     );
+                //     // Navigator.of(context).pushNamed('/custeditprofilepage');
+                //   },
+                // ),
+                // Divider(
+                //   color: Color(0xff6998AB),
+                // ),
                 ListTile(
                   contentPadding: EdgeInsets.only(left: 20),
                   title: Text(

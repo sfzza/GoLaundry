@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:golaundry/pages/models/laundries.dart';
@@ -26,8 +26,15 @@ class _popularlaundryState extends State<popularlaundry> {
       padding: const EdgeInsets.only(right: 30),
       child: Container(
         width: 250,
-        height: 260,
+        height: 265,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(1, 2),
+              blurRadius: 2.0,
+            )
+          ],
           color: Color(0xff6998AB),
         ),
         child: Padding(
