@@ -20,7 +20,7 @@ class MySplashScreen extends StatefulWidget {
 class _MySplashScreenState extends State<MySplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 3), () async {
-      if (firebaseAuth.currentUser != null) {
+      if (await firebaseAuth.currentUser != null) {
         currentFirebaseUser = firebaseAuth.currentUser;
         CollectionReference<Map<String, dynamic>> custRef =
             FirebaseFirestore.instance.collection('customers');

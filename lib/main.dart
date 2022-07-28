@@ -9,6 +9,8 @@ import 'package:golaundry/pages/splash%20screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'pages/userlevel_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
@@ -28,12 +30,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (c) => AddressChanger()),
       ],
       child: const MaterialApp(
-        title: 'golaundry mobile app',
-        debugShowCheckedModeBanner: false,
-        home:
-            // UserLevelPage()
-            MySplashScreen(),
-      ),
+          title: 'golaundry mobile app',
+          debugShowCheckedModeBanner: false,
+          home: UserLevelPage()
+          // MySplashScreen(),
+          ),
     );
   }
 }
